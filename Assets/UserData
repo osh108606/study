@@ -1,0 +1,22 @@
+{
+    "nickname": "짱짱",
+    "gold": 100,
+    "userItems": [
+        {
+            "key": "ShookAmmo",
+            "count": 4500
+        },
+        {
+            "key": "IncendiaryAmmo",
+            "count": 200
+        },
+        {
+            "key": "ExplosiveAmmo",
+            "count": 500
+        },
+        {
+            "key": "",
+            "count": 0
+        }
+    ]
+}

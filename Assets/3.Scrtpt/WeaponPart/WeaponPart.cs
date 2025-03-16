@@ -10,5 +10,8 @@ public class WeaponPart : MonoBehaviour
 
 public enum WeaponPartType
 {
-
+    Silencer,
+    Magazine,
+    Sight,
+    Handle
 }

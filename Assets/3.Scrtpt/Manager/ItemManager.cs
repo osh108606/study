@@ -1,9 +1,15 @@
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
+
+//아이템 매니저 코드 게임의 아이템데이터를 관리
+
+
+
 //아이템 유형
 public enum ItemType
 {
-    Gear,//장비
+    equipment,//장비
     Consume,//소모
     blueprint,//설계도
     Ingredient//재료
@@ -25,10 +31,11 @@ public class ItemManager : MonoBehaviour
     public static ItemManager Instance;
     public WeaponInfo Weaponinfo;
 
-    public GearItemData[] gearItemDatas;
-    public ItemData[] consumDatas;
-    public ItemData[] blueprintDatas;
-    public ItemData[] IngredientDatas;
+    public WeaponItemData[] weaponItemDatas;//무기
+    public GearItemData[] gearItemDatas;//장비
+    public ItemData[] consumDatas;//소모품
+    public ItemData[] blueprintDatas;//제작서
+    public ItemData[] IngredientDatas;//제료
     private void Awake()
     {
         Instance = this;
@@ -40,6 +47,33 @@ public class ItemManager : MonoBehaviour
         Weaponinfo = GetWeaponData(WeaponType.HG);
 
     }
+
+    public WeaponItemData GetWeaponItemData(string key)
+    {
+        for (int i = 0; i < weaponItemDatas.Length; i++)
+        {
+            if (weaponItemDatas[i].key == key)
+            {
+                return weaponItemDatas[i];
+            }
+        }
+        return null;
+    }
+
+    public GearItemData GetGearItemData(string key)
+    {
+        for (int i = 0; i < gearItemDatas.Length; i++)
+        {
+            if (gearItemDatas[i].key == key)
+            {
+                return gearItemDatas[i];
+            }
+        }
+        return null;
+    }
+
+
+
     public WeaponInfo GetWeaponData(WeaponType weaponType)
     {
         for (int i = 0; i < weaponInfos.Length; i++)
@@ -56,9 +90,15 @@ public class ItemManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class GearItemData:ItemData
+public class WeaponItemData : ItemData
 {
     public WeaponInfo WeaponInfo;
+    public Grade grade;
+}
+
+public class GearItemData : ItemData
+{
+    //public WeaponInfo WeaponInfo;
     public Grade grade;
 }
 

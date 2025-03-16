@@ -4,7 +4,8 @@ using UnityEngine;
 public class WeaponInfo : ScriptableObject
 {
     public WeaponType weaponType;
-    public  WeaponUseType WeaponUse;
+    public  WeaponUseType weaponUse;
+    public WeaponPartType[] partTypes; 
     public Grade grade;
     //?=넣을지 고려중or여기에 넣는건지 모름
     //무기데미지? public int weapondamage;
@@ -19,10 +20,13 @@ public class WeaponInfo : ScriptableObject
     //치명타 데미지? public int CriticalDamage
     public int HeadshotDamage;  //헤드샷 데미지
     
+
+
     public int cilpammo;        //현탄창 양
     public bool automaticFire;  //자동발사여부
     public Sprite thum;         //썸네일
     public Sprite illustrat;    //스프라이트
+    public string shortcutInfo;
 }
 
 //무기 종류타입

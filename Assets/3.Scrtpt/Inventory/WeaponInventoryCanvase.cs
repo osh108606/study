@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,31 +9,36 @@ public class WeaponInventoryCanvase : MonoBehaviour
     //현재 장착하고있는 아이템
     //간략한 정보
     //가지고있는 아이템들
-    public ItemPanel itemPanePrefab;
+    public WeaponItemPanel itemPanePrefab;
     public Transform contentTr;
-    
 
-    void Start()
+    List<WeaponItemPanel> panels = new List<WeaponItemPanel>();
+    private void OnEnable()
     {
-        string setupWeaponkey = User.Instance.userData.equipments.
-        
-        for(int i=0; i< User.Instance.userData.equipments.Count; i++)
+        for(int i = 0; i < panels.Count; i++)
         {
-            if(setupWeaponkey != ItemManager.Instance.weaponItemDatas[i].key)
-            {
-                continue;
-            }
-            ItemPanel Panel = Instantiate(itemPanePrefab, contentTr);
-            Panel.SetUserItem(User.Instance.userData.equipments[i]);
+            panels[i].gameObject.SetActive(false);
+        }
+        for(int i=0; i< User.Instance.userData.weapons.Count; i++)
+        {
+            WeaponItemPanel Panel = GetWeaponItemPanelInPool();
+            Panel.SetWeapon(User.Instance.userData.weapons[i]);
         }
     }
 
-    void WeaponUpdate()
+    public WeaponItemPanel GetWeaponItemPanelInPool()
     {
-        
-
-        
-            //ItemPanel Panel = Instantiate(itemPanePrefab, contentTr);
-            //Panel.SetUserItem(User.Instance.userData.userItems[i]);
+        for (int i = 0; i < panels.Count; i++)
+        {
+            if (panels[i].gameObject.activeSelf)
+            {
+                continue;
+            }
+            panels[i].gameObject.SetActive(true);
+            return panels[i];
+        }
+        WeaponItemPanel panel =Instantiate(itemPanePrefab, contentTr);
+        panels.Add (panel);
+        return panel;
     }
 }

@@ -2445,11 +2445,13 @@ MonoBehaviour:
   userData:
     nickname: 
     gold: 0
-    weaponkey: 
     userItems: []
-    equipments: []
+    weapons: []
+    gears: []
   equipment:
     key: 
+    setup: 0
+    partKeys: []
   bulletItem: {fileID: 0}
   itemName: 
   itemCount: 0
@@ -2505,7 +2507,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.00091552734, y: 523.4931}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 660, y: 40}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &886184930
 MonoBehaviour:
@@ -4172,10 +4174,10 @@ MonoBehaviour:
   moveSpeed: 10
   rb2d: {fileID: 1412916301}
   weapons:
-  - {fileID: 1806886992}
+  - {fileID: 567978806}
   - {fileID: 248494167}
   - {fileID: 1806886992}
-  - {fileID: 0}
+  - {fileID: 1247046329}
   curweapon: 0
 --- !u!1 &1565302767
 GameObject:
@@ -4661,7 +4663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1648248480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4758,7 +4760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea298cc24ecb77248a7a5e6035a6e668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPanePrefab: {fileID: 4120953807831452451, guid: 2ee162deeeb621c47b16b016955f6507, type: 3}
+  itemPanePrefab: {fileID: 2158303312437954661, guid: 637dc990de28fad499de15c4f4a193ad, type: 3}
   contentTr: {fileID: 886184929}
 --- !u!1 &1691651677
 GameObject:
@@ -4975,7 +4977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1806886990
 Transform:
   m_ObjectHideFlags: 0

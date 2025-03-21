@@ -12,7 +12,7 @@ public class WeaponInfoContainer : MonoBehaviour
 
     public void UpdateContainer()
     {
-        string setupWeaponKey = User.Instance.userData.equipment.key;
+        string setupWeaponKey = null;//User.Instance.userData.equipment.key;
         //배열에 접근한 이유?
         WeaponItemData weaponItemData = ItemManager.Instance.GetWeaponItemData(setupWeaponKey);
         weaponImage.sprite = weaponItemData.thum;

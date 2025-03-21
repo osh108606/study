@@ -46,7 +46,7 @@ public class User : MonoBehaviour
             equipment.key = itemName;
             
 
-            userData.equipments.Add(equipment);
+            userData.weapons.Add(equipment);
         }
     }
 
@@ -79,10 +79,11 @@ public class User : MonoBehaviour
 public class UserData
 {
     public string nickname;
-    //public int gold;
-    //public string weaponkey;
+    public int gold;
+    
     public List<UserItem> userItems = new List<UserItem>();
-    public List<Equipment> equipments = new List<Equipment>();
+    public List<Equipment> weapons = new List<Equipment>(); //보유무기
+    public List<Equipment> gears = new List<Equipment>();//보유장비
 }
 
 [System.Serializable]
@@ -95,5 +96,6 @@ public class UserItem
 public class Equipment
 {
     public string key;
-
+    public bool setup;
+    public List<string> partKeys = new List<string>();
 }

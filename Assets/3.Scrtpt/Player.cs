@@ -78,15 +78,7 @@ public class Player : MonoBehaviour, IHittable
     private void Update()
     {
         float attackvalue = inputAction.Ground.Attack.ReadValue<float>();
-        if (attackvalue == 1)
-        {
-            Debug.Log("Attack 1");
-        }
-
-        if (inputAction.Ground.Attack.triggered)
-        {
-            Debug.Log("Attack 2");
-        }
+        
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Equipt(0);

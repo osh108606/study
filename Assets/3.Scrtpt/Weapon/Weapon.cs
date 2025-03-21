@@ -1,4 +1,5 @@
-using UnityEditor;
+using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -10,7 +11,8 @@ public class Weapon : MonoBehaviour
     public WeaponPart[] weaponParts;
 
     public int crurrentAmmo;
-
+    int currentBullets=0;
+    List<Bullet> bullets = new List<Bullet>();
     public float GetDamage()
     {
         float weaponPartDamage = 0;
@@ -52,6 +54,7 @@ public class Weapon : MonoBehaviour
     public virtual void Start()
     {
         crurrentAmmo = weaponInfo.cilpammo;
+        
     }
     public virtual void Update()
     {
@@ -93,17 +96,37 @@ public class Weapon : MonoBehaviour
             Reload();
         }
     }
-    //일반 발사
-    public virtual void Shoot()
+    
+//일반 발사
+public virtual void Shoot()
     {    
         Vector2 screenPoint = Input.mousePosition;
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint); ;
         Vector2 directtion = worldPoint - (Vector2)transform.position;
 
-
-        Bullet bullet = Instantiate(bulletPrefab);
-        bullet.gameObject.transform.position = transform.position;
-        bullet.Shoot(this, directtion.normalized);
+        for (int i = 0; i < bullets.Count; i++)
+        {
+            bullets[i].gameObject.SetActive(false);
+        }
+        if(currentBullets>=bullets.Count)
+        {
+            Bullet bullet = Instantiate(bulletPrefab);
+            bullet.gameObject.transform.position = transform.position;
+            bullet.Shoot(this, directtion.normalized);
+            bullets.Add(bullet);
+            currentBullets = bullets.Count;
+        }
+        for (int i = 0; i < bullets.Count; i++)
+        {
+            Bullet bullet = GetbulletInPool();
+            bullet.gameObject.transform.position = transform.position;
+            bullet.Shoot(this, directtion.normalized);
+        }
+        
+        
+        //Bullet bullet = Instantiate(bulletPrefab);
+        //bullet.gameObject.transform.position = transform.position;
+        //bullet.Shoot(this, directtion.normalized);
         
     }
     //산탄 발사
@@ -127,12 +150,28 @@ public class Weapon : MonoBehaviour
     //산탄 구현
     void SGShoot(Vector2 dir)
     {
+        
         Bullet bullet2 = Instantiate(bulletPrefab);
         bullet2.gameObject.transform.position = transform.position;
         bullet2.Shoot(this,dir);
 
     }
-
+    public Bullet GetbulletInPool()
+    {
+        for (int i = 0; i < bullets.Count; i++)
+        {
+            if (bullets[i].gameObject.activeSelf)
+            {
+                continue;
+            }
+            bullets[i].gameObject.SetActive(true);
+            return bullets[i];
+        }
+        Bullet bullet = Instantiate(bulletPrefab);
+        bullets.Add(bullet);
+        currentBullets = bullets.Count;
+        return bullet;
+    }
     //장전
     public void Reload()
     {

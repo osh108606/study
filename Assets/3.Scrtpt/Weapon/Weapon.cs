@@ -11,7 +11,8 @@ public class Weapon : MonoBehaviour
     public WeaponPart[] weaponParts;
 
     public int crurrentAmmo;
-    int currentBullets=0;
+    float t = 0;
+    List<Bullet> crurrentBullets = new List<Bullet>();
     List<Bullet> bullets = new List<Bullet>();
     public float GetDamage()
     {
@@ -61,8 +62,8 @@ public class Weapon : MonoBehaviour
         float FPS = weaponInfo.RPM / 60;
         float fireRate = 1f / FPS;
         time += Time.deltaTime;
+        t += Time.deltaTime;
 
-        
         if (Input.GetMouseButtonDown(0) && weaponInfo.automaticFire == false &&time >= fireRate && weaponInfo.weaponType != WeaponType.SG && crurrentAmmo > 0)
         {
             Shoot();
@@ -103,25 +104,19 @@ public virtual void Shoot()
         Vector2 screenPoint = Input.mousePosition;
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint); ;
         Vector2 directtion = worldPoint - (Vector2)transform.position;
-
+        //총알 비활성화
         for (int i = 0; i < bullets.Count; i++)
         {
-            bullets[i].gameObject.SetActive(false);
+            if (t > 2f)
+            {
+                bullets[i].gameObject.SetActive(false);
+            } 
         }
-        if(currentBullets>=bullets.Count)
-        {
-            Bullet bullet = Instantiate(bulletPrefab);
-            bullet.gameObject.transform.position = transform.position;
-            bullet.Shoot(this, directtion.normalized);
-            bullets.Add(bullet);
-            currentBullets = bullets.Count;
-        }
-        for (int i = 0; i < bullets.Count; i++)
-        {
-            Bullet bullet = GetbulletInPool();
-            bullet.gameObject.transform.position = transform.position;
-            bullet.Shoot(this, directtion.normalized);
-        }
+        //총알 활성화(오브젝트풀링)
+        Bullet bullet = GetbulletInPool();
+        bullet.gameObject.transform.position = transform.position;
+        bullet.Shoot(this, directtion.normalized);
+        
         
         
         //Bullet bullet = Instantiate(bulletPrefab);
@@ -160,6 +155,7 @@ public virtual void Shoot()
     {
         for (int i = 0; i < bullets.Count; i++)
         {
+            
             if (bullets[i].gameObject.activeSelf)
             {
                 continue;
@@ -169,7 +165,6 @@ public virtual void Shoot()
         }
         Bullet bullet = Instantiate(bulletPrefab);
         bullets.Add(bullet);
-        currentBullets = bullets.Count;
         return bullet;
     }
     //장전

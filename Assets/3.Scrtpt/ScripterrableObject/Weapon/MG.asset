@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: MG
   m_EditorClassIdentifier: 
   weaponType: 0
-  WeaponUse: 0
-  baseDamage: 0
-  RPM: 0
-  Accuracy: 0
+  weaponUse: 0
+  partTypes: 
+  grade: 0
+  baseDamage: 1
+  RPM: 600
+  accuracy: 0
   stability: 0
-  reloadSpeed: 0
-  CurrentAmmo: 0
-  cilpammo: 0
+  reloadSpeed: 3
+  HeadshotDamage: 0
+  cilpammo: 100
   automaticFire: 1
   thum: {fileID: 0}
   illustrat: {fileID: 0}
+  shortcutInfo: 

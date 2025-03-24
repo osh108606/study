@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
 
     public Weapon currentWeapon;
 
-    float t = 0;
+    
     Vector2 direction;
     
     public void Shoot (Weapon weapon, Vector2 dir)
@@ -29,12 +29,6 @@ public class Bullet : MonoBehaviour
    
     void Update()
     {
-        //총알 삭제시간
-        t += Time.deltaTime;
-        if (t > 1f)
-        {
-            Destroy(gameObject);
-        }
         //위치이동
         transform.position = (Vector2)transform.position + direction* movespeed *Time.deltaTime;
     }

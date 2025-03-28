@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: HG
   m_EditorClassIdentifier: 
   weaponType: 0
-  WeaponUse: 2
+  weaponUse: 2
+  partTypes: 
+  grade: 0
   baseDamage: 1
   RPM: 370
-  Accuracy: 0
+  accuracy: 0
   stability: 0
   reloadSpeed: 2
-  CurrentAmmo: 10
+  HeadshotDamage: 0
   cilpammo: 10
   automaticFire: 0
   thum: {fileID: 0}
   illustrat: {fileID: 0}
+  shortcutInfo: 

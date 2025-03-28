@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45cd99b2e801304298a515d9c94caa1, type: 3}
   m_Name: SMG
   m_EditorClassIdentifier: 
-  weaponType: 0
-  WeaponUse: 0
+  weaponType: 1
+  weaponUse: 0
+  partTypes: 
+  grade: 0
   baseDamage: 1
   RPM: 1000
-  Accuracy: 0
+  accuracy: 0
   stability: 0
   reloadSpeed: 2
-  CurrentAmmo: 39
+  HeadshotDamage: 0
   cilpammo: 40
   automaticFire: 1
   thum: {fileID: 0}
   illustrat: {fileID: 0}
+  shortcutInfo: 

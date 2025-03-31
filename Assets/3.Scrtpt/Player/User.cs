@@ -73,13 +73,13 @@ public class User : MonoBehaviour
     }
 
     // 유저가 장착한 무기 중 setup 값이 true인 무기를 찾아 반환합니다.
-    public Equipment GetSetUpWeapon()
-    {
+    public Equipment GetSetUpWeapon(WeaponSetUpType type)
+    {   
         // 유저가 보유한 무기 리스트를 순회합니다.
         for (int i = 0; i < userData.weapons.Count; i++)
         {
             // 만약 해당 무기가 현재 장착된 상태라면 반환합니다.
-            if (userData.weapons[i].setup == true)
+            if (userData.weapons[i].setUpType == type)
             {
                 return userData.weapons[i];
             }
@@ -160,7 +160,10 @@ public class Equipment
     // 장비를 식별하기 위한 고유 key
     public string key;
     // 해당 장비가 현재 장착되어 있는지 여부
-    public bool setup;
+    //public bool setup;
+    public WeaponSetUpType setUpType ;
+
+
     // 장비에 부착된 부품들의 key 목록 (부품 정보를 참조하기 위한 리스트)
     public List<string> partKeys = new List<string>();
 }

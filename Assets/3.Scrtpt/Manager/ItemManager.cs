@@ -33,7 +33,7 @@ public class ItemManager : MonoBehaviour
     public static ItemManager Instance;
 
     // 기본 무기 정보 (예: 권총 등 기본 무기 데이터를 저장)
-    public WeaponInfo Weaponinfo;
+    public WeaponInfo weaponinfo;
 
     // 무기 아이템 데이터 배열 (Inspector에서 할당; 무기 관련 아이템 데이터들을 저장)
     public WeaponItemData[] weaponItemDatas; // 무기 데이터
@@ -59,7 +59,7 @@ public class ItemManager : MonoBehaviour
     private void Start()
     {
         // 예시로 HG 타입(권총) 무기의 정보를 가져와 Weaponinfo에 저장
-        Weaponinfo = GetWeaponData(WeaponType.HG);
+        weaponinfo = GetWeaponData(WeaponType.HG);
     }
 
     // key 값으로 무기 아이템 데이터를 검색하여 반환하는 메서드
@@ -105,35 +105,14 @@ public class ItemManager : MonoBehaviour
             if (weaponInfos[i].weaponType == weaponType)
             {
                 // 해당 무기 정보를 Weaponinfo에 저장하고 반환
-                Weaponinfo = weaponInfos[i];
-                return Weaponinfo;
+                weaponinfo = weaponInfos[i];
+                return weaponinfo;
             }
         }
         // 일치하는 무기 정보가 없으면 null 반환
         return null;
     }
 }
-
-// 무기 아이템 데이터를 나타내는 클래스 (아이템 데이터 상속)
-// [System.Serializable] 어트리뷰트를 사용하여 Inspector에서 데이터를 확인하고 수정할 수 있습니다.
-[System.Serializable]
-public class WeaponItemData : ItemData
-{
-    // 무기에 대한 상세 정보 (WeaponInfo ScriptableObject를 통해 정의된 무기 데이터)
-    public WeaponInfo WeaponInfo;
-    // 무기의 등급
-    public Grade grade;
-}
-
-// 장비 아이템 데이터를 나타내는 클래스 (아이템 데이터 상속)
-public class GearItemData : ItemData
-{
-    // 무기와 달리 장비 아이템은 별도의 WeaponInfo가 필요하지 않거나 다른 데이터 구조를 가질 수 있음
-    // public WeaponInfo WeaponInfo; // 필요에 따라 주석 해제 가능
-    // 장비의 등급
-    public Grade grade;
-}
-
 // 모든 아이템 데이터의 기본 클래스
 [System.Serializable]
 public class ItemData
@@ -147,3 +126,26 @@ public class ItemData
     // 아이템의 종류 (장비, 소모품, 설계도, 재료 등)
     public ItemType itemType;
 }
+// 무기 아이템 데이터를 나타내는 클래스 (아이템 데이터 상속)
+// [System.Serializable] 어트리뷰트를 사용하여 Inspector에서 데이터를 확인하고 수정할 수 있습니다.
+[System.Serializable]
+public class WeaponItemData : ItemData
+{
+    // 무기에 대한 상세 정보 (WeaponInfo ScriptableObject를 통해 정의된 무기 데이터)
+    public WeaponInfo weaponInfo;
+    public float accuracyMultiy;
+    public float stabilityMultiy;
+    // 무기의 등급
+    public Grade grade;
+}
+
+// 장비 아이템 데이터를 나타내는 클래스 (아이템 데이터 상속)
+public class GearItemData : ItemData
+{
+    // 무기와 달리 장비 아이템은 별도의 WeaponInfo가 필요하지 않거나 다른 데이터 구조를 가질 수 있음
+    // public WeaponInfo WeaponInfo; // 필요에 따라 주석 해제 가능
+    // 장비의 등급
+    public Grade grade;
+}
+
+

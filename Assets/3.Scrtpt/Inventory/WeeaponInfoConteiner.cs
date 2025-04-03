@@ -29,13 +29,13 @@ public class WeaponInfoContainer : MonoBehaviour
         // 가져온 데이터로 UI 요소들을 업데이트
         weaponImage.sprite = weaponItemData.thum;             // 무기 썸네일 이미지 설정
         weaponNametext.text = weaponItemData.name;            // 무기 이름 설정
-        weaponInfotext.text = weaponItemData.WeaponInfo.shortcutInfo; // 무기에 대한 간략 정보(설명) 설정
+        weaponInfotext.text = weaponItemData.weaponInfo.shortcutInfo; // 무기에 대한 간략 정보(설명) 설정
 
         //현재 장착한 무기부품 보이도록구현하기
 
 
         // 무기에 장착 가능한 부품 타입들을 가져옴
-        WeaponPartType[] weaponPartTypes = weaponItemData.WeaponInfo.partTypes;
+        WeaponPartType[] weaponPartTypes = weaponItemData.weaponInfo.partTypes;
         // 각 부품 버튼을 순회하며, 해당 무기에 부품이 장착 가능한지 확인 후 UI 표시 처리
         for (int i = 0; i < partButtons.Length; i++)
         {

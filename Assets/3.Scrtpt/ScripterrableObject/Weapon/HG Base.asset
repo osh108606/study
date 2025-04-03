@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e45cd99b2e801304298a515d9c94caa1, type: 3}
-  m_Name: SG
+  m_Name: HG Base
   m_EditorClassIdentifier: 
-  weaponType: 3
-  WeaponUse: 0
+  weaponType: 0
+  weaponUse: 1
+  partTypes: 
   grade: 0
   baseDamage: 1
-  RPM: 75
-  Accuracy: 0
+  RPM: 370
+  accuracy: 0
   stability: 0
-  reloadSpeed: 4
-  cilpammo: 5
+  reloadSpeed: 2
+  HeadshotDamage: 0
+  cilpammo: 10
   automaticFire: 0
   thum: {fileID: 0}
   illustrat: {fileID: 0}
+  shortcutInfo: 

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e45cd99b2e801304298a515d9c94caa1, type: 3}
-  m_Name: RF
+  m_Name: AR Base
   m_EditorClassIdentifier: 
-  weaponType: 4
+  weaponType: 2
   weaponUse: 0
   partTypes: 
   grade: 0
   baseDamage: 0
-  RPM: 0
+  RPM: 850
   accuracy: 0
   stability: 0
-  reloadSpeed: 0
+  reloadSpeed: 2.5
   HeadshotDamage: 0
-  cilpammo: 0
-  automaticFire: 0
+  cilpammo: 30
+  automaticFire: 1
   thum: {fileID: 0}
   illustrat: {fileID: 0}
   shortcutInfo: 

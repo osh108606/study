@@ -46,7 +46,7 @@ public class WeaponInventoryCanvase : MonoBehaviour
         for (int i =0;i< User.Instance.userData.weapons.Count; i++)
         {
             WeaponItemData data = ItemManager.Instance.GetWeaponItemData(User.Instance.userData.weapons[i].key);
-            if(data.WeaponInfo.weaponUse == type)
+            if(data.weaponInfo.weaponUse == type)
             {
                 equipments.Add(User.Instance.userData.weapons[i]);
             }

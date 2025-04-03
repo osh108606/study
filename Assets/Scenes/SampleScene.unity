@@ -951,30 +951,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fe067a6f74f1843b19c63eecf4b2cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weaponinfo: {fileID: 11400000, guid: e7fc6a76a8e54d9429fd3971cea3acac, type: 2}
+  weaponinfo: {fileID: 0}
   weaponItemDatas:
-  - key: AK47
-    name: AK47
+  - key: AR
+    name: AR
     thum: {fileID: 0}
     itemType: 0
-    WeaponInfo: {fileID: 11400000, guid: d9d127aed6a1bbc46918111751353103, type: 2}
+    weaponInfo: {fileID: 0}
+    accuracyMultiy: 0
+    stabilityMultiy: 0
     grade: 0
-  - key: M16
-    name: M16
+  - key: MG
+    name: MG
     thum: {fileID: 0}
     itemType: 0
-    WeaponInfo: {fileID: 11400000, guid: ea239bd76777a4d4e9cbff9e15478400, type: 2}
+    weaponInfo: {fileID: 0}
+    accuracyMultiy: 0
+    stabilityMultiy: 0
     grade: 0
-  - key: Pistol
-    name: Pistol
+  - key: HG
+    name: HG
     thum: {fileID: 0}
     itemType: 0
-    WeaponInfo: {fileID: 11400000, guid: c2d9798620276db4da48e8746f6d09d3, type: 2}
+    weaponInfo: {fileID: 0}
+    accuracyMultiy: 0
+    stabilityMultiy: 0
+    grade: 0
+  - key: SG
+    name: SG
+    thum: {fileID: 0}
+    itemType: 0
+    weaponInfo: {fileID: 0}
+    accuracyMultiy: 0
+    stabilityMultiy: 0
+    grade: 0
+  - key: SG
+    name: SG
+    thum: {fileID: 0}
+    itemType: 0
+    weaponInfo: {fileID: 0}
+    accuracyMultiy: 0
+    stabilityMultiy: 0
+    grade: 0
+  - key: SMG
+    name: SMG
+    thum: {fileID: 0}
+    itemType: 0
+    weaponInfo: {fileID: 0}
+    accuracyMultiy: 0
+    stabilityMultiy: 0
     grade: 0
   consumDatas: []
   blueprintDatas: []
   IngredientDatas: []
-  weaponInfos: []
+  weaponInfos:
+  - {fileID: 11400000, guid: d9d127aed6a1bbc46918111751353103, type: 2}
+  - {fileID: 11400000, guid: ea239bd76777a4d4e9cbff9e15478400, type: 2}
+  - {fileID: 11400000, guid: c2d9798620276db4da48e8746f6d09d3, type: 2}
+  - {fileID: 11400000, guid: 6bf42645c6e73f949930b53a34f474c4, type: 2}
+  - {fileID: 11400000, guid: 8809cbe7063f53741a2aacf3f6d9982e, type: 2}
+  - {fileID: 11400000, guid: 63ad42a70b454b244a6fb7fc4df442ca, type: 2}
+  - {fileID: 11400000, guid: 0fb49be324aab4742978a3ab68ea1c3e, type: 2}
 --- !u!4 &369087907
 Transform:
   m_ObjectHideFlags: 0
@@ -2224,6 +2261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponUseType: 2
+  setUpType: 0
 --- !u!1 &728355416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,15 +2372,15 @@ MonoBehaviour:
     userItems: []
     weapons:
     - key: M16
-      setup: 1
+      setUpType: 0
       partKeys: []
     - key: AK47
-      setup: 0
+      setUpType: 0
       partKeys: []
     gears: []
   equipment:
     key: 
-    setup: 0
+    setUpType: 0
     partKeys: []
   bulletItem: {fileID: 0}
   itemName: 
@@ -2508,6 +2546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponUseType: 0
+  setUpType: 0
 --- !u!1 &886184928
 GameObject:
   m_ObjectHideFlags: 0
@@ -3623,6 +3662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponUseType: 1
+  setUpType: 0
 --- !u!1 &1412916297
 GameObject:
   m_ObjectHideFlags: 0
@@ -4564,6 +4604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponUseType: 4
+  setUpType: 0
 --- !u!1 &1804539662
 GameObject:
   m_ObjectHideFlags: 0

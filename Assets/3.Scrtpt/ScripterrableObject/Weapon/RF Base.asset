@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e45cd99b2e801304298a515d9c94caa1, type: 3}
-  m_Name: SMG
+  m_Name: RF Base
   m_EditorClassIdentifier: 
-  weaponType: 1
+  weaponType: 4
   weaponUse: 0
   partTypes: 
   grade: 0
-  baseDamage: 1
-  RPM: 1000
+  baseDamage: 0
+  RPM: 0
   accuracy: 0
   stability: 0
-  reloadSpeed: 2
+  reloadSpeed: 0
   HeadshotDamage: 0
-  cilpammo: 40
-  automaticFire: 1
+  cilpammo: 0
+  automaticFire: 0
   thum: {fileID: 0}
   illustrat: {fileID: 0}
   shortcutInfo: 

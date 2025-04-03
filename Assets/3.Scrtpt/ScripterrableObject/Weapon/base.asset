@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: base
   m_EditorClassIdentifier: 
   weaponType: 0
-  WeaponUse: 0
+  weaponUse: 1
+  partTypes: 
+  grade: 0
   baseDamage: 0
   RPM: 0
-  Accuracy: 0
+  accuracy: 0
   stability: 0
   reloadSpeed: 0
-  CurrentAmmo: 0
+  HeadshotDamage: 0
   cilpammo: 0
   automaticFire: 0
   thum: {fileID: 0}
   illustrat: {fileID: 0}
+  shortcutInfo: 

@@ -8,6 +8,10 @@ public class Weapon : MonoBehaviour
     public WeaponInfo weaponInfo;
     // 발사할 총알 프리팹 (미리 만들어진 총알 템플릿)
     public Bullet bulletPrefab;
+    //무기 바리에이션 용 무기 능력치
+    public float accuracyMultiy=1;
+    public float stabilityMultiy=1;
+    public int exCilpammo=0;
     // 발사 간격 조절용 시간 변수
     public float time = 1f;
     // 무기 부품의 종류 타입
@@ -50,9 +54,38 @@ public class Weapon : MonoBehaviour
             weaponPartAccuracy -= weaponParts[i].accuracy;
         }
         // 기본 명중률에서 부품 보정치를 적용하여 최종 명중률 계산
-        return weaponInfo.accuracy - weaponPartAccuracy;
+        return accuracyMultiy * weaponInfo.accuracy - weaponPartAccuracy;
     }
 
+    // 무기의 최종 안정성(반동)을 계산하는 함수
+    public float GetStability()
+    {
+        float weaponPartStability = 0;
+        // 각 부품들이 제공하는 안정성 보정치를 누적 (음수 값을 빼서 적용)
+        for (int i = 0; i < weaponParts.Length; i++)
+        {
+            if (weaponParts[i] == null)
+                continue;
+            weaponPartStability -= weaponParts[i].stability;
+        }
+        // 기본 안정성에서 부품 보정치를 적용하여 최종 안정성 계산
+        return stabilityMultiy * weaponInfo.stability - weaponPartStability;
+    }
+
+    // 무기의 최종 안정성(반동)을 계산하는 함수
+    public float Getcilpammo()
+    {
+        float weaponPartCilpammo = 0;
+        // 각 부품들이 제공하는 안정성 보정치를 누적 (음수 값을 빼서 적용)
+        for (int i = 0; i < weaponParts.Length; i++)
+        {
+            if (weaponParts[i] == null)
+                continue;
+            weaponPartCilpammo -= weaponParts[i].cilpammo;
+        }
+        // 기본 안정성에서 부품 보정치를 적용하여 최종 안정성 계산
+        return (exCilpammo + weaponInfo.cilpammo) - weaponPartCilpammo;
+    }
     /* 
        무기 타입별 특성에 관한 주석
        HG  : 보통 반동, 보통 명중률, 초탄(최소 1 ~ 최대 5발) 변동 없음

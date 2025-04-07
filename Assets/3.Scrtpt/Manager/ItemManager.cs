@@ -133,8 +133,7 @@ public class WeaponItemData : ItemData
 {
     // 무기에 대한 상세 정보 (WeaponInfo ScriptableObject를 통해 정의된 무기 데이터)
     public WeaponInfo weaponInfo;
-    public float accuracyMultiy;
-    public float stabilityMultiy;
+    
     // 무기의 등급
     public Grade grade;
 }
@@ -142,8 +141,7 @@ public class WeaponItemData : ItemData
 // 장비 아이템 데이터를 나타내는 클래스 (아이템 데이터 상속)
 public class GearItemData : ItemData
 {
-    // 무기와 달리 장비 아이템은 별도의 WeaponInfo가 필요하지 않거나 다른 데이터 구조를 가질 수 있음
-    // public WeaponInfo WeaponInfo; // 필요에 따라 주석 해제 가능
+    
     // 장비의 등급
     public Grade grade;
 }

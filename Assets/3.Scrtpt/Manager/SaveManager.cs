@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 
 // SaveManager 클래스는 제네릭 타입(T)의 데이터를 JSON 형식으로 저장하고 불러오는 기능을 제공합니다.
-public class SaveManager
+public class SaveManager:MonoBehaviour
 {
     // SaveData<T>() 메서드는 fName이라는 파일 이름을 사용하여 T 타입의 데이터를 저장합니다.
     public static void SaveData<T>(string fName, T data)

@@ -15,6 +15,8 @@ public class WeaponItemPanel : MonoBehaviour
     // 해당 패널에 연결된 무기 장비 데이터를 저장하는 변수
     public Equipment equipment;
 
+    
+
     // 무기 데이터를 패널에 설정하는 메서드
     public void SetWeapon(Equipment equipment)
     {
@@ -34,8 +36,12 @@ public class WeaponItemPanel : MonoBehaviour
     // 패널이 클릭되었을 때 호출되는 이벤트 메서드
     public void OnClickedPanel()
     {
+
+        User.Instance.SetUp(GetComponentInParent<WeaponInventoryCanvase>().weaponSetUpType,equipment);
+        //GetComponentInParent<WeaponInventoryCanvase>().weaponSetUpType
+        //equipment
         // 부모 오브젝트 중 WeaponInventoryCanvase 컴포넌트를 찾아,
         // 해당 컴포넌트의 SetEquipment 메서드를 호출하여 현재 패널에 연결된 장비를 장착하도록 설정
-        GetComponentInParent<WeaponInventoryCanvase>().SetEquipment(equipment);
+        GetComponentInParent<WeaponInventoryCanvase>().UpdateInventory();
     }
 }

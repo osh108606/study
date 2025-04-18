@@ -20,6 +20,13 @@ public class WeaponInfoContainer : MonoBehaviour
     // 선택한 무기 장비 데이터를 UI에 반영하는 메서드
     public void SetEquipment(Equipment equipment)
     {
+        if(equipment == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        gameObject.SetActive(true);
+
         // 전달받은 장비 데이터의 고유 키를 가져옴
         string Key = equipment.key;
 

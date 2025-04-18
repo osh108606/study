@@ -88,6 +88,18 @@ public class User : MonoBehaviour
         return null;
     }
 
+    public void SetUp(WeaponSetUpType setUpType, Equipment equipment)
+    {
+        Equipment setUpE = GetSetUpWeapon(setUpType);
+        if (setUpE != null)
+        {
+            setUpE.setUpType = WeaponSetUpType.None;
+        }
+        equipment.setUpType = setUpType;
+        
+    }
+
+
     // 특정 key를 가진 아이템의 개수를 추가하는 메서드입니다.
     public void AddItem(string key, int count)
     {

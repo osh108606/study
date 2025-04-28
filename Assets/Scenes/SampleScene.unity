@@ -1528,7 +1528,9 @@ MonoBehaviour:
   - {fileID: 230952491}
   - {fileID: 1717741968}
   - {fileID: 938510333}
-  enemiePrefab: []
+  enemiePrefab:
+  - {fileID: 6137751771346667383, guid: 0b609bb9e9a3169439783e524cad34d8, type: 3}
+  - {fileID: 2408558223459603114, guid: 8551efe6043723847ac2c6295c29e10c, type: 3}
 --- !u!1 &369087905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,6 +2202,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2290,7 +2293,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 1000
   field of view: 34
   orthographic: 1
@@ -2325,6 +2328,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d9bc8fc87f70746a32f9b3f349dbff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &567978802
 GameObject:
   m_ObjectHideFlags: 0
@@ -5650,14 +5665,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412916297}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -5668,7 +5683,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1412916302
 MonoBehaviour:
   m_ObjectHideFlags: 0

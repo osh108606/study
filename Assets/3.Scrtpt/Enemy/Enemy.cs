@@ -1,7 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-//ภ๛ ป๓ลย
+
 public enum Enemystate
 {
     Idle,

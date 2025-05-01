@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         hp -= damage;
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
     void Start()

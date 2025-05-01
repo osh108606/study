@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Chameleon
   m_EditorClassIdentifier: 
   weaponType: 2
-  WeaponUse: 0
+  weaponUse: 0
+  partTypes: 
   grade: 2
   baseDamage: 1
   RPM: 900
-  Accuracy: 0
+  accuracy: 0
   stability: 0
   reloadSpeed: 2.4
+  HeadshotDamage: 0
   cilpammo: 50
   automaticFire: 1
   thum: {fileID: 0}
   illustrat: {fileID: 0}
+  shortcutInfo: 

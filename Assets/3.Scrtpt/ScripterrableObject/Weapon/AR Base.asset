@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponUse: 0
   partTypes: 
   grade: 0
-  baseDamage: 0
+  baseDamage: 1
   RPM: 850
   accuracy: 0
   stability: 0

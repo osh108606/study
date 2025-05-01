@@ -173,6 +173,7 @@ public class Equipment
     public string key;
     // 해당 장비가 현재 장착되어 있는지 여부
     //public bool setup;
+    // 해당 장비가 장착 된 슬롯
     public WeaponSetUpType setUpType ;
 
 

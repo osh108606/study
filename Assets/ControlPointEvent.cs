@@ -8,7 +8,10 @@ public class ControlPointEvent : MonoBehaviour
     public Collider2D collider2D;
     public Transform[] SpPoint;
     public Enemy[] enemiePrefab;
+    [SerializeField]
     List<Enemy> enemies = new List<Enemy> ();
+    [SerializeField]
+    List<Enemy> aliveEnemies = new List<Enemy>();
     public void Start()
     {
         if (true)
@@ -18,7 +21,8 @@ public class ControlPointEvent : MonoBehaviour
         }
     }
     public void Update()
-    { 
+    {
+        EnemyTrack();
     }
     //구현과는 다르게 원한것: 적 조합 프리펩? 같은것 만든뒤 
     //조합 단위로 랜덤한 스폰 포인트에 스폰하는것
@@ -31,6 +35,8 @@ public class ControlPointEvent : MonoBehaviour
             meleeEnemy.transform.position = SpPoint[i].transform.position;
             Enemy rangeEnemy = GetEnemyInPool(EnemyType.Ranged);
             rangeEnemy.transform.position = SpPoint[i].transform.position;
+            aliveEnemies.Add(rangeEnemy);
+            aliveEnemies.Add(meleeEnemy);
         }
        
 
@@ -55,10 +61,15 @@ public class ControlPointEvent : MonoBehaviour
             {
                 Enemy enemy = Instantiate(enemiePrefab[i]);
                 enemies.Add(enemy);
+                
                 return enemy;
             }
         }
         return null;
+    }
+    public void EnemyTrack()
+    {
+
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {

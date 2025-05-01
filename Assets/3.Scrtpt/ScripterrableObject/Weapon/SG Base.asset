@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: SG Base
   m_EditorClassIdentifier: 
   weaponType: 3
-  WeaponUse: 0
+  weaponUse: 0
+  partTypes: 
   grade: 0
   baseDamage: 1
   RPM: 75
-  Accuracy: 0
+  accuracy: 0
   stability: 0
   reloadSpeed: 4
+  HeadshotDamage: 0
   cilpammo: 5
   automaticFire: 0
   thum: {fileID: 0}
   illustrat: {fileID: 0}
+  shortcutInfo: 

@@ -4,6 +4,7 @@ using UnityEngine;
 // Weapon 클래스는 MonoBehaviour를 상속받아 Unity의 게임 오브젝트로 동작합니다.
 public class Weapon : MonoBehaviour
 {
+
     // 무기 기본 정보를 담은 변수
     public WeaponInfo weaponInfo;
     // 발사할 총알 프리팹 (미리 만들어진 총알 템플릿)
@@ -19,9 +20,9 @@ public class Weapon : MonoBehaviour
     // 무기에 장착된 부품 배열
     public WeaponPart[] weaponParts;
 
-    // 현재 남은 탄약 수
-    public int crurrentAmmo;
-
+    private bool isReloading = false;
+    private float reloadTimer = 0f;
+    
     // 총알 오브젝트 풀링에 사용할 리스트 (활성화된 총알들을 관리할 의도로 보임)
     List<Bullet> crurrentBullets = new List<Bullet>();
     // 오브젝트 풀링용 총알 리스트 (비활성화된 총알 포함)
@@ -98,7 +99,11 @@ public class Weapon : MonoBehaviour
     public virtual void Start()
     {
         // 초기 탄약 수를 무기의 최대 탄약 수로 설정
-        crurrentAmmo = weaponInfo.cilpammo;
+        for(int i = 0; i<User.Instance.userData.currentAmmoSlot.Length; i++)
+        {
+            User.Instance.userData.currentAmmoSlot[i] = weaponInfo.cilpammo;
+        }
+        
     }
 
     // 매 프레임마다 호출되는 업데이트 메서드
@@ -111,42 +116,54 @@ public class Weapon : MonoBehaviour
         // 경과 시간 누적
         time += Time.deltaTime;
 
-        // 비자동 무기 & 산탄총이 아닌 경우: 마우스 왼쪽 버튼 클릭 시 발사
-        if (Input.GetMouseButtonDown(0) && weaponInfo.automaticFire == false && time >= fireRate && weaponInfo.weaponType != WeaponType.SG && crurrentAmmo > 0)
-        {
-            Shoot();           // 일반 발사 함수 호출
-            time = 0;          // 발사 후 시간 초기화
-            crurrentAmmo--;    // 탄약 감소
-        }
+        int currentSlotIndex = (int)User.Instance.userData.currentSlot;
+        int[] ammoArray = User.Instance.userData.currentAmmoSlot;
 
-        // 자동 무기 & 산탄총이 아닌 경우: 마우스 왼쪽 버튼 누르고 있을 때 발사
-        if (Input.GetMouseButton(0) && time >= fireRate && weaponInfo.weaponType != WeaponType.SG && weaponInfo.automaticFire == true && crurrentAmmo > 0)
-        {
-            Shoot();
-            time = 0;
-            crurrentAmmo--;
-        }
+        // 발사 가능 조건
+        bool canFire = time >= fireRate && ammoArray[currentSlotIndex] > 0;
 
-        // 비자동 산탄총인 경우: 마우스 왼쪽 버튼 클릭 시 산탄 발사
-        if (Input.GetMouseButtonDown(0) && weaponInfo.weaponType == WeaponType.SG && weaponInfo.automaticFire == false && time >= fireRate && crurrentAmmo > 0)
-        {
-            SGShoot();
-            time = 0;
-            crurrentAmmo--;
-        }
+        // 자동 비자동 조건
+        bool isFirePressed = weaponInfo.automaticFire ? Input.GetMouseButton(0) : Input.GetMouseButtonDown(0);
 
-        // 자동 산탄총인 경우: 마우스 왼쪽 버튼 누르고 있을 때 산탄 발사
-        if (Input.GetMouseButton(0) && time >= fireRate && weaponInfo.weaponType == WeaponType.SG && weaponInfo.automaticFire == true && crurrentAmmo > 0)
+
+
+        if (isReloading)
         {
-            SGShoot();
-            time = 0;
-            crurrentAmmo--;
+            reloadTimer -= Time.deltaTime;
+
+            if (reloadTimer <= 0f)
+            {
+                ammoArray[currentSlotIndex] = weaponInfo.cilpammo;
+                isReloading = false;
+            }
+
+            return; // 장전 중엔 발사, 재장전, 입력 등 모두 차단
         }
 
         // 재장전: R키를 눌렀을 때 현재 탄약이 최대 탄약보다 적으면 재장전 수행
-        if (Input.GetKeyDown(KeyCode.R) && (crurrentAmmo < weaponInfo.cilpammo))
+        if (Input.GetKeyDown(KeyCode.R) && (ammoArray[currentSlotIndex] < weaponInfo.cilpammo))
         {
             Reload();
+        }
+
+        if (!canFire)
+        {
+            return;
+        }
+            
+        if (isFirePressed)
+        {
+            if (weaponInfo.weaponType == WeaponType.SG)
+            {
+                SGShoot();
+            }
+            else
+            {
+                Shoot();
+            }
+
+            time = 0f;
+            ammoArray[currentSlotIndex]--;
         }
     }
 
@@ -256,7 +273,10 @@ public class Weapon : MonoBehaviour
         // 재장전 중임을 로그로 출력
         Debug.Log("장전중");
         // 현재 탄약 수를 최대 탄약 수로 재설정
-        crurrentAmmo = weaponInfo.cilpammo;
+        if (isReloading) return;
+
+        isReloading = true;
+        reloadTimer = weaponInfo.reloadSpeed;
         // 재장전 완료를 로그로 출력
         Debug.Log("장전완료");
     }

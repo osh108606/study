@@ -32,8 +32,8 @@ public class WeaponInventoryCanvase : MonoBehaviour
 
     List<Equipment> equipments = new List<Equipment>();
     public WeaponUseType weaponUseType;
-    public WeaponSetUpType weaponSetUpType;
-    public void OpenWeaponInventory(WeaponUseType type ,WeaponSetUpType setUpType)
+    public WeaponSlotType weaponSetUpType;
+    public void OpenWeaponInventory(WeaponUseType type ,WeaponSlotType setUpType)
     {
         gameObject.SetActive(true);
         Debug.Log($"WeaponInventoryCanvase OpenWeaponInventory() weaponUseType{type} WeaponSetUpType{setUpType}");

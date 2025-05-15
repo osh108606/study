@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class WeaponSlot : EquipmentSlot
 {
     public WeaponUseType weaponUseType;
-    public WeaponSetUpType setUpType;
+    public WeaponSlotType setUpType;
     //public WeaponInventoryCanvase weaponInventoryCanvase;
     private void Start()
     {

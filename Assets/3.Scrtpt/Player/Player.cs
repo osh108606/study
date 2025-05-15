@@ -15,7 +15,7 @@ public class Player : MonoBehaviour, IHittable
     public Weapon[] weapons;
     public Weapon curweapon;
     
-    public WeaponSlot weaponslot = WeaponSlot.Main1;
+    public WeaponSlotType weaponslot = WeaponSlotType.Main1;
     public Weapon[] weaponSlots = new Weapon[4];
 
     MainInputSystem inputAction;
@@ -41,21 +41,8 @@ public class Player : MonoBehaviour, IHittable
     }
     private void Start()
     {
-        Equipment main1 = User.Instance.GetSetUpWeapon(WeaponSetUpType.Main1);
-        Equipment main2 = User.Instance.GetSetUpWeapon(WeaponSetUpType.Main2);
-        if (main1 == null&&main2 == null)
-        {
-            main1 = new Equipment();
-            main2 = new Equipment();
-            main1.key = WeaponType.AR.ToString();
-            main1.setUpType = WeaponSetUpType.Main1;
-            User.Instance.SetUp(WeaponSetUpType.Main1, main1);
-            main2.key = WeaponType.SMG.ToString();
-            main2.setUpType = WeaponSetUpType.Main2;
-            User.Instance.SetUp(WeaponSetUpType.Main2, main2);
-        }
         
-        Equipt(main1.key);
+        Equipt(User.Instance.GetSetUpWeapon(WeaponSlotType.Main1).key);
         WeaponChange();
         Debug.Log("Start");
     }
@@ -63,20 +50,30 @@ public class Player : MonoBehaviour, IHittable
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            weaponslot = (WeaponSlot)(((int)weaponslot) + 1);
+            weaponslot = (WeaponSlotType)(((int)weaponslot) + 1);
             if ((int)weaponslot > 3)
             {
-                weaponslot = WeaponSlot.Main1;
+                weaponslot = WeaponSlotType.Main1;
             }
+            ChangeSlot();
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
-            weaponslot = (WeaponSlot)(((int)weaponslot) - 1);
+            weaponslot = (WeaponSlotType)(((int)weaponslot) - 1);
             if ((int)weaponslot < 0)
             {
-                weaponslot = WeaponSlot.Special;
+                weaponslot = WeaponSlotType.Special;
             }
+            ChangeSlot();
         }
+    }
+    public void ChangeSlot()
+    {
+        Equipment equipment = User.Instance.GetSetUpWeapon(weaponslot);
+        if (equipment != null)
+            Equipt(equipment.key);
+        else
+            curweapon = null;
     }
     public void TakeDamage(float damage)
     {
@@ -90,7 +87,7 @@ public class Player : MonoBehaviour, IHittable
     }
     public void Equipt(string weaponKey)//intÇü
     {
-
+        curweapon = null;
         for (int i = 0; i < weapons.Length; i++)
         {
             if (weapons[i].weaponInfo.weaponType.ToString() == weaponKey)
@@ -160,11 +157,14 @@ public class Player : MonoBehaviour, IHittable
     {
         return BodyPart.Body;
     }
-    public enum WeaponSlot
-    {
+    
+}
+public enum WeaponSlotType
+{
         Main1 = 0,
         Main2,
         Sub,
-        Special
-    }
+        Special,
+        Count,
+        None
 }

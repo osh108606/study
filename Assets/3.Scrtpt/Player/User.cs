@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 유저 데이터를 관리하는 클래스입니다.
-// 싱글톤 패턴을 사용하여 게임 내 어디서든 유저 데이터에 접근할 수 있도록 합니다.
+// 유저 데이터를 관리하는 클래스
+// 싱글톤 패턴을 사용
 public class User : MonoBehaviour
 {
-    // 싱글톤 인스턴스: 게임 내 유일한 User 객체에 접근하기 위한 정적 변수
+    // 싱글톤 인스턴스
     public static User Instance;
 
     // 현재 유저의 데이터 (닉네임, 보유 아이템, 무기 등 포함)
@@ -19,7 +19,6 @@ public class User : MonoBehaviour
 
     // 디버그 또는 테스트용으로 입력받는 아이템 이름
     public string itemName;
-
     // 디버그 또는 테스트용으로 입력받는 아이템 개수
     public int itemCount;
 
@@ -29,7 +28,7 @@ public class User : MonoBehaviour
         Instance = this;
     }
 
-    // Start()는 게임 시작 시 호출되며, 저장된 유저 데이터를 불러오거나 초기화합니다.
+    //게임 시작 시 호출되며, 저장된 유저 데이터를 불러오거나 초기화
     private void Start()
     {
         // "UserData"라는 파일 이름으로 저장된 데이터를 불러옵니다.
@@ -40,6 +39,26 @@ public class User : MonoBehaviour
         {
             userData = new UserData();
             userData.nickname = "player";
+
+
+            Equipment main1 = new Equipment();
+            
+            main1.key = WeaponType.AR.ToString();
+            main1.setUpType = WeaponSlotType.Main1;
+            User.Instance.SetUp(WeaponSlotType.Main1, main1);
+
+            Equipment main2 = new Equipment();
+            main2.key = WeaponType.SMG.ToString();
+            main2.setUpType = WeaponSlotType.Main2;
+            User.Instance.SetUp(WeaponSlotType.Main2, main2);
+
+            Equipment sub = new Equipment();
+            sub.key = WeaponType.HG.ToString();
+            sub.setUpType = WeaponSlotType.Sub;
+            User.Instance.SetUp(WeaponSlotType.Sub, sub);
+
+            AddItem(AmmoType.AR.ToString(),100);
+            AddItem(AmmoType.SMG.ToString(), 100);
             // 초기 골드, 무기 키 등 추가 데이터 설정 가능
             // userData.gold = 100;
             // userData.weaponkey = "Pistol";
@@ -49,7 +68,7 @@ public class User : MonoBehaviour
         }
     }
 
-    // Update()는 매 프레임 호출되며, 디버그용 키 입력에 따라 아이템이나 무기를 추가합니다.
+    // 디버그용 키 입력에 따라 아이템이나 무기를 추가합니다.
     private void Update()
     {
         // H 키를 누르면 새로운 아이템(UserItem)을 생성하여 userItems 리스트에 추가합니다.
@@ -73,7 +92,7 @@ public class User : MonoBehaviour
     }
 
     // 유저가 장착한 무기 중 setup 값이 true인 무기를 찾아 반환합니다.
-    public Equipment GetSetUpWeapon(WeaponSetUpType type)
+    public Equipment GetSetUpWeapon(WeaponSlotType type)
     {   
         // 유저가 보유한 무기 리스트를 순회합니다.
         for (int i = 0; i < userData.weapons.Count; i++)
@@ -88,12 +107,12 @@ public class User : MonoBehaviour
         return null;
     }
 
-    public void SetUp(WeaponSetUpType setUpType, Equipment equipment)
+    public void SetUp(WeaponSlotType setUpType, Equipment equipment)
     {
         Equipment setUpE = GetSetUpWeapon(setUpType);
         if (setUpE != null)
         {
-            setUpE.setUpType = WeaponSetUpType.None;
+            setUpE.setUpType = WeaponSlotType.None;
         }
         equipment.setUpType = setUpType;
         
@@ -135,9 +154,6 @@ public class User : MonoBehaviour
     }
 }
 
-// [System.Serializable] 어트리뷰트를 사용하여 클래스가 직렬화되도록 함
-// 유니티 에디터에서 해당 데이터를 확인 및 수정할 수 있습니다.
-
 // 유저의 기본 데이터를 저장하는 클래스입니다.
 [System.Serializable]
 public class UserData
@@ -146,6 +162,10 @@ public class UserData
     public string nickname;
     // 유저가 보유한 골드
     public int gold;
+
+    public int[] currentAmmoSlot = new int[4];
+
+    public WeaponSlotType currentSlot = WeaponSlotType.Main1;
 
     // 유저가 소유한 아이템 리스트
     public List<UserItem> userItems = new List<UserItem>();
@@ -172,9 +192,9 @@ public class Equipment
     // 장비를 식별하기 위한 고유 key
     public string key;
     // 해당 장비가 현재 장착되어 있는지 여부
-    //public bool setup;
+    
     // 해당 장비가 장착 된 슬롯
-    public WeaponSetUpType setUpType ;
+    public WeaponSlotType setUpType ;
 
 
     // 장비에 부착된 부품들의 key 목록 (부품 정보를 참조하기 위한 리스트)

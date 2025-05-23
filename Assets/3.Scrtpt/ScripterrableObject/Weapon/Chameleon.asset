@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponType: 2
   weaponUse: 0
   partTypes: 
+  ammoType: 2
   grade: 2
   baseDamage: 1
   RPM: 900

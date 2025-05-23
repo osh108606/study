@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, IHittable
     
     public WeaponSlotType weaponslot = WeaponSlotType.Main1;
     public Weapon[] weaponSlots = new Weapon[4];
-
+    public WeaponStatusPanel weaponStatusPanel;
     MainInputSystem inputAction;
 
     private void Awake()
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour, IHittable
                 weapons[i].gameObject.SetActive(false);
             }
         }
-        
+        weaponStatusPanel.Equiped();
     }
     public void WeaponChange()//intÇü
     {

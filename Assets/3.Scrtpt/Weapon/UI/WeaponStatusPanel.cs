@@ -5,7 +5,14 @@ public class WeaponStatusPanel : MonoBehaviour
 {
     public TMP_Text currentMagzinText;
     public TMP_Text ownMagzinText;
-    // Update is called once per frame
+
+    UserItem userItem;
+    public void Equiped()
+    {
+        userItem = User.Instance.GetUesrItem(Player.Instance.curweapon.weaponInfo.ammoType.ToString());
+      
+    }
+
     void Update()
     {
         if(Player.Instance == null)
@@ -21,8 +28,9 @@ public class WeaponStatusPanel : MonoBehaviour
         int slotIndex = (int)User.Instance.userData.currentSlot;
         currentMagzinText.text = User.Instance.userData.currentAmmoSlot[slotIndex].ToString();
 
-        WeaponInfo info = Player.Instance.curweapon.weaponInfo;
-        ownMagzinText.text = info.cilpammo.ToString();
+        
+
+        ownMagzinText.text = userItem.count.ToString();
 
     }
 }

@@ -26,11 +26,7 @@ public class User : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
 
-    //게임 시작 시 호출되며, 저장된 유저 데이터를 불러오거나 초기화
-    private void Start()
-    {
         // "UserData"라는 파일 이름으로 저장된 데이터를 불러옵니다.
         userData = SaveManager.LoadData<UserData>("UserData");
 
@@ -42,22 +38,25 @@ public class User : MonoBehaviour
 
 
             Equipment main1 = new Equipment();
-            
+
             main1.key = WeaponType.AR.ToString();
             main1.setUpType = WeaponSlotType.Main1;
-            User.Instance.SetUp(WeaponSlotType.Main1, main1);
+            userData.weapons.Add(main1);
+            SetUp(WeaponSlotType.Main1, main1);
 
             Equipment main2 = new Equipment();
             main2.key = WeaponType.SMG.ToString();
             main2.setUpType = WeaponSlotType.Main2;
-            User.Instance.SetUp(WeaponSlotType.Main2, main2);
+            userData.weapons.Add(main2);
+            SetUp(WeaponSlotType.Main2, main2);
 
             Equipment sub = new Equipment();
             sub.key = WeaponType.HG.ToString();
             sub.setUpType = WeaponSlotType.Sub;
-            User.Instance.SetUp(WeaponSlotType.Sub, sub);
+            userData.weapons.Add(sub);
+            SetUp(WeaponSlotType.Sub, sub);
 
-            AddItem(AmmoType.AR.ToString(),100);
+            AddItem(AmmoType.AR.ToString(), 100);
             AddItem(AmmoType.SMG.ToString(), 100);
             // 초기 골드, 무기 키 등 추가 데이터 설정 가능
             // userData.gold = 100;
@@ -66,6 +65,12 @@ public class User : MonoBehaviour
             // 생성된 초기 데이터를 저장합니다.
             SaveManager.SaveData("UserData", userData);
         }
+    }
+
+    //게임 시작 시 호출되며, 저장된 유저 데이터를 불러오거나 초기화
+    private void Start()
+    {
+        
     }
 
     // 디버그용 키 입력에 따라 아이템이나 무기를 추가합니다.

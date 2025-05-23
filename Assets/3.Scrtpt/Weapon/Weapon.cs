@@ -118,7 +118,7 @@ public class Weapon : MonoBehaviour
 
         int currentSlotIndex = (int)User.Instance.userData.currentSlot;
         int[] ammoArray = User.Instance.userData.currentAmmoSlot;
-
+        
         // 발사 가능 조건
         bool canFire = time >= fireRate && ammoArray[currentSlotIndex] > 0;
 
@@ -133,10 +133,23 @@ public class Weapon : MonoBehaviour
 
             if (reloadTimer <= 0f)
             {
-                ammoArray[currentSlotIndex] = weaponInfo.cilpammo;
+                
+                int current = ammoArray[currentSlotIndex];
+                
+                int max = weaponInfo.cilpammo;
+
+                int reload = max - current;
+
+                
+                UserItem userItem = User.Instance.GetUesrItem(weaponInfo.ammoType.ToString());
+
+                // 탄창 충전
+                ammoArray[currentSlotIndex] += reload;
+                // 인벤토리 탄약 차감
+                userItem.count -= reload;
                 isReloading = false;
             }
-
+            
             return; // 장전 중엔 발사, 재장전, 입력 등 모두 차단
         }
 
@@ -273,7 +286,8 @@ public class Weapon : MonoBehaviour
         // 재장전 중임을 로그로 출력
         Debug.Log("장전중");
         // 현재 탄약 수를 최대 탄약 수로 재설정
-        if (isReloading) return;
+        if (isReloading) 
+            return;
 
         isReloading = true;
         reloadTimer = weaponInfo.reloadSpeed;

@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour, IHittable
     public Weapon[] weapons;
     public Weapon curweapon;
     
-    public WeaponSlotType weaponslot = WeaponSlotType.Main1;
+    //public WeaponSlotType weaponslot = WeaponSlotType.Main1;
     public Weapon[] weaponSlots = new Weapon[4];
     public WeaponStatusPanel weaponStatusPanel;
     MainInputSystem inputAction;
@@ -48,33 +49,41 @@ public class Player : MonoBehaviour, IHittable
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            weaponslot = (WeaponSlotType)(((int)weaponslot) + 1);
-            if ((int)weaponslot > 3)
+
+            User.Instance.ChangeWeaponSlot((WeaponSlotType)(((int)User.Instance.userData.currentSlot) + 1));
+            if ((int)User.Instance.userData.currentSlot > 3)
             {
-                weaponslot = WeaponSlotType.Main1;
+                User.Instance.ChangeWeaponSlot((WeaponSlotType)((int)WeaponSlotType.Main1));
+                
             }
             ChangeSlot();
         }
-        else if(Input.GetKeyDown(KeyCode.Q))
+        else if (Input.GetKeyDown(KeyCode.Q))
         {
-            weaponslot = (WeaponSlotType)(((int)weaponslot) - 1);
-            if ((int)weaponslot < 0)
+            User.Instance.ChangeWeaponSlot((WeaponSlotType)(((int)User.Instance.userData.currentSlot) - 1));
+            if ((int)User.Instance.userData.currentSlot < 0)
             {
-                weaponslot = WeaponSlotType.Special;
+                User.Instance.ChangeWeaponSlot((WeaponSlotType)((int)WeaponSlotType.Special));
             }
             ChangeSlot();
         }
     }
+
     public void ChangeSlot()
     {
-        Equipment equipment = User.Instance.GetSetUpWeapon(weaponslot);
+        Equipment equipment = User.Instance.GetSetUpWeapon(User.Instance.userData.currentSlot);
+
+        User.Instance.ChangeWeaponSlot(equipment.setUpType);
+
+
         if (equipment != null)
             Equipt(equipment.key);
         else
             curweapon = null;
     }
+    
     public void TakeDamage(float damage)
     {
 
@@ -85,7 +94,9 @@ public class Player : MonoBehaviour, IHittable
             Destroy(gameObject);
         }
     }
-    public void Equipt(string weaponKey)//int형
+    //현재무기장착
+    WeaponSlotType weaponSlot;
+    public void Equipt(string weaponKey)//*********
     {
         curweapon = null;
         for (int i = 0; i < weapons.Length; i++)
@@ -102,6 +113,8 @@ public class Player : MonoBehaviour, IHittable
         }
         weaponStatusPanel.Equiped();
     }
+
+    
     public void WeaponChange()//int형
     {
         for (int i = 0; i < weapons.Length; i++)

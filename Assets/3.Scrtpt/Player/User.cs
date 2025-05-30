@@ -73,6 +73,11 @@ public class User : MonoBehaviour
         
     }
 
+    public void ChangeWeaponSlot(WeaponSlotType weaponSlotType)
+    {
+        userData.currentSlot = weaponSlotType;
+    }
+
     // 디버그용 키 입력에 따라 아이템이나 무기를 추가합니다.
     private void Update()
     {
@@ -157,6 +162,8 @@ public class User : MonoBehaviour
         userData.userItems.Add(userItem);
         return userItem;
     }
+
+    
 }
 
 // 유저의 기본 데이터를 저장하는 클래스입니다.

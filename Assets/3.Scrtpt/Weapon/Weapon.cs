@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 // Weapon 클래스는 MonoBehaviour를 상속받아 Unity의 게임 오브젝트로 동작합니다.
@@ -22,7 +23,10 @@ public class Weapon : MonoBehaviour
 
     private bool isReloading = false;
     private float reloadTimer = 0f;
-    
+
+    [SerializeField]
+    WeaponSlotType slotType;
+
     // 총알 오브젝트 풀링에 사용할 리스트 (활성화된 총알들을 관리할 의도로 보임)
     List<Bullet> crurrentBullets = new List<Bullet>();
     // 오브젝트 풀링용 총알 리스트 (비활성화된 총알 포함)
@@ -98,11 +102,11 @@ public class Weapon : MonoBehaviour
     // 초기화 메서드: 무기가 시작될 때 호출됨
     public virtual void Start()
     {
-        // 초기 탄약 수를 무기의 최대 탄약 수로 설정
-        for(int i = 0; i<User.Instance.userData.currentAmmoSlot.Length; i++)
-        {
-            User.Instance.userData.currentAmmoSlot[i] = weaponInfo.cilpammo;
-        }
+        //// 초기 탄약 수를 무기의 최대 탄약 수로 설정
+        //for(int i = 0; i<User.Instance.userData.currentAmmoSlot.Length; i++)
+        //{
+        //    User.Instance.userData.currentAmmoSlot[i] = weaponInfo.cilpammo;
+        //}
         
     }
 
@@ -293,6 +297,11 @@ public class Weapon : MonoBehaviour
         reloadTimer = weaponInfo.reloadSpeed;
         // 재장전 완료를 로그로 출력
         Debug.Log("장전완료");
+    }
+
+    public void ChangeSlot(WeaponSlotType weaponSlot)
+    {
+        slotType = weaponSlot;
     }
 
     // 적중 시 처리할 메서드 (하위 클래스에서 오버라이딩하여 사용)

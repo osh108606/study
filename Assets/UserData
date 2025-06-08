@@ -8,32 +8,37 @@
         0
     ],
     "currentSlot": 0,
-    "userItems": [
-        {
-            "key": "AR",
-            "count": 100
-        },
-        {
-            "key": "SMG",
-            "count": 100
-        }
-    ],
+    "userItems": [],
     "weapons": [
         {
-            "key": "AR",
+            "key": "AR Base",
             "setUpType": 0,
             "partKeys": []
         },
         {
-            "key": "SMG",
+            "key": "SMG Base",
             "setUpType": 1,
             "partKeys": []
         },
         {
-            "key": "HG",
+            "key": "HG Base",
             "setUpType": 2,
             "partKeys": []
         }
     ],
-    "gears": []
+    "gears": [],
+    "ammo": [
+        {
+            "ammoType": 2,
+            "count": 100
+        },
+        {
+            "ammoType": 1,
+            "count": 100
+        },
+        {
+            "ammoType": 0,
+            "count": 100
+        }
+    ]
 }

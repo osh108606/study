@@ -16,8 +16,7 @@ public class Weapon : MonoBehaviour
     public int exCilpammo=0;
     // 발사 간격 조절용 시간 변수
     public float time = 1f;
-    // 무기 부품의 종류 타입
-    //public WeaponPartType weaponPartType;
+    
     // 무기에 장착된 부품 배열
     public WeaponPart[] weaponParts;
 
@@ -99,18 +98,13 @@ public class Weapon : MonoBehaviour
        MG  : 낮은 시작 명중률, 시작 반동, 발사 시 명중률과 반동이 증가
     */
 
-    // 초기화 메서드: 무기가 시작될 때 호출됨
+    // 초기화, 무기가 시작될 때 호출
     public virtual void Start()
     {
-        //// 초기 탄약 수를 무기의 최대 탄약 수로 설정
-        //for(int i = 0; i<User.Instance.userData.currentAmmoSlot.Length; i++)
-        //{
-        //    User.Instance.userData.currentAmmoSlot[i] = weaponInfo.cilpammo;
-        //}
         
     }
 
-    // 매 프레임마다 호출되는 업데이트 메서드
+    // 매 프레임마다 업데이트
     public virtual void Update()
     {
         // 분당 발사 속도(RPM)를 초당 발사 속도로 변환
@@ -144,13 +138,13 @@ public class Weapon : MonoBehaviour
 
                 int reload = max - current;
 
-                
-                UserItem userItem = User.Instance.GetUesrItem(weaponInfo.ammoType.ToString());
+                //체크x
+                Ammo ammo = User.Instance.GetUesrAmmo(weaponInfo.ammoType);
 
                 // 탄창 충전
                 ammoArray[currentSlotIndex] += reload;
                 // 인벤토리 탄약 차감
-                userItem.count -= reload;
+                ammo.count -= reload;
                 isReloading = false;
             }
             
@@ -287,7 +281,7 @@ public class Weapon : MonoBehaviour
     // 재장전 메서드: 탄약을 최대치로 회복합니다.
     public void Reload()
     {
-        // 재장전 중임을 로그로 출력
+        
         Debug.Log("장전중");
         // 현재 탄약 수를 최대 탄약 수로 재설정
         if (isReloading) 
@@ -295,7 +289,7 @@ public class Weapon : MonoBehaviour
 
         isReloading = true;
         reloadTimer = weaponInfo.reloadSpeed;
-        // 재장전 완료를 로그로 출력
+        
         Debug.Log("장전완료");
     }
 

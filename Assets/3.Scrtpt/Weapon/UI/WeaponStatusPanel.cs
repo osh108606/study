@@ -6,10 +6,10 @@ public class WeaponStatusPanel : MonoBehaviour
     public TMP_Text currentMagzinText;
     public TMP_Text ownMagzinText;
 
-    UserItem userItem;
+    Ammo ammo;
     public void Equiped()
     {
-        userItem = User.Instance.GetUesrItem(Player.Instance.curweapon.weaponInfo.ammoType.ToString());
+        ammo = User.Instance.GetUesrAmmo(Player.Instance.curweapon.weaponInfo.ammoType);
       
     }
 
@@ -30,7 +30,7 @@ public class WeaponStatusPanel : MonoBehaviour
 
         
 
-        ownMagzinText.text = userItem.count.ToString();
+        ownMagzinText.text = ammo.count.ToString();
 
     }
 }

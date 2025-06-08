@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45cd99b2e801304298a515d9c94caa1, type: 3}
   m_Name: AR Base
   m_EditorClassIdentifier: 
+  key: AR Base
   weaponType: 2
+  ammoType: 2
   weaponUse: 0
   partTypes: 
-  ammoType: 2
   grade: 0
   baseDamage: 1
   RPM: 850

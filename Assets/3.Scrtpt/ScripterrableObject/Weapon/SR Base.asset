@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45cd99b2e801304298a515d9c94caa1, type: 3}
   m_Name: SR Base
   m_EditorClassIdentifier: 
+  key: SR Base
   weaponType: 5
+  ammoType: 3
   weaponUse: 0
   partTypes: 
-  ammoType: 3
   grade: 0
   baseDamage: 1
   RPM: 60

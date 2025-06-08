@@ -96,12 +96,12 @@ public class Player : MonoBehaviour, IHittable
     }
     //현재무기장착
     WeaponSlotType weaponSlot;
-    public void Equipt(string weaponKey)//*********
-    {
+    public void Equipt(string weaponKey)
+    { 
         curweapon = null;
         for (int i = 0; i < weapons.Length; i++)
         {
-            if (weapons[i].weaponInfo.weaponType.ToString() == weaponKey)
+            if (weapons[i].weaponInfo.key == weaponKey)
             {
                 curweapon = weapons[i];
                 weapons[i].gameObject.SetActive(true);

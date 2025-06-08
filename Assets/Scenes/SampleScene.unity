@@ -1327,6 +1327,7 @@ MonoBehaviour:
   exCilpammo: 0
   time: 1
   weaponParts: []
+  slotType: 0
 --- !u!1 &250485972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1510,7 @@ MonoBehaviour:
   exCilpammo: 0
   time: 1
   weaponParts: []
+  slotType: 0
 --- !u!1 &322222162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,6 +3143,7 @@ MonoBehaviour:
   exCilpammo: 0
   time: 1
   weaponParts: []
+  slotType: 0
 --- !u!1 &569958243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4046,6 +4049,7 @@ MonoBehaviour:
     userItems: []
     weapons: []
     gears: []
+    ammo: []
   equipment:
     key: 
     setUpType: 0
@@ -7081,6 +7085,7 @@ MonoBehaviour:
   exCilpammo: 0
   time: 1
   weaponParts: []
+  slotType: 0
 --- !u!1 &1285678756
 GameObject:
   m_ObjectHideFlags: 0
@@ -7571,7 +7576,6 @@ MonoBehaviour:
   - {fileID: 1806886992}
   - {fileID: 1247046329}
   curweapon: {fileID: 0}
-  weaponslot: 0
   weaponSlots:
   - {fileID: 0}
   - {fileID: 0}
@@ -7760,6 +7764,7 @@ MonoBehaviour:
   exCilpammo: 0
   time: 1
   weaponParts: []
+  slotType: 0
 --- !u!1 &1613925016
 GameObject:
   m_ObjectHideFlags: 0
@@ -8788,6 +8793,7 @@ MonoBehaviour:
   exCilpammo: 0
   time: 1
   weaponParts: []
+  slotType: 0
 --- !u!1 &1877191246
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class bulletItem : item
+public class bulletItem : Item
 {
     
     public Bullet bullet;

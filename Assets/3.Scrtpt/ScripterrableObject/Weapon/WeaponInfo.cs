@@ -9,7 +9,7 @@ public class WeaponInfo : ScriptableObject
     public string key;
     // 무기타입
     public WeaponType weaponType;
-    public WeaponType ammoType;
+    
     
     public WeaponUseType weaponUse;
     

@@ -139,7 +139,7 @@ public class Weapon : MonoBehaviour
                 int reload = max - current;
 
                 //체크x
-                Ammo ammo = User.Instance.GetUesrAmmo(weaponInfo.ammoType);
+                Ammo ammo = User.Instance.GetUesrAmmo(weaponInfo.weaponType);
 
                 // 탄창 충전
                 ammoArray[currentSlotIndex] += reload;
@@ -266,16 +266,15 @@ public class Weapon : MonoBehaviour
             return bullets[i];
         }
         // 사용 가능한 총알이 없다면, 새로 생성하여 리스트에 추가 후 반환
-        Bullet bullet = Instantiate(bulletPrefab);
-        bullets.Add(bullet);
-        bullets.Add(bullet);
-        bullets.Add(bullet);
-        bullets.Add(bullet);
-        bullets.Add(bullet);
-        bullets.Add(bullet);
-        bullets.Add(bullet);
-        bullets.Add(bullet);
-        return bullet;
+        
+        for (int i = 0; i < 8; i++)
+        {
+            Bullet bullet = Instantiate(bulletPrefab);
+            bullet.gameObject.SetActive(false);
+            bullets.Add(bullet);
+        }
+        bullets[7].gameObject.SetActive(true);
+        return bullets[7];
     }
 
     // 재장전 메서드: 탄약을 최대치로 회복합니다.

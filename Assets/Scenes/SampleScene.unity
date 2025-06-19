@@ -606,6 +606,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36554127}
   m_CullTransparentMesh: 1
+--- !u!1 &50343094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 50343096}
+  - component: {fileID: 50343095}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &50343095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50343094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9387a0b6905af4995551cef37daafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weaponinfo: {fileID: 11400000, guid: e7fc6a76a8e54d9429fd3971cea3acac, type: 2}
+  weaponInfos: []
+  ArGradePoints:
+  - grade: 0
+    min: 1
+    max: 3
+  - grade: 1
+    min: 4
+    max: 7
+  - grade: 2
+    min: 8
+    max: 10
+  SmgGradePoints:
+  - grade: 0
+    min: 1
+    max: 3
+  - grade: 1
+    min: 4
+    max: 7
+  - grade: 2
+    min: 8
+    max: 10
+--- !u!4 &50343096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50343094}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5709062, y: 0.42038807, z: -0.021583524}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &90935373
 GameObject:
   m_ObjectHideFlags: 0
@@ -9888,3 +9954,4 @@ SceneRoots:
   - {fileID: 7693576555779990737}
   - {fileID: 3070822432002623776}
   - {fileID: 1119890543}
+  - {fileID: 50343096}

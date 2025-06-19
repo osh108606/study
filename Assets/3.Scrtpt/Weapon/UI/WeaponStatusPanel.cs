@@ -9,7 +9,7 @@ public class WeaponStatusPanel : MonoBehaviour
     Ammo ammo;
     public void Equiped()
     {
-        ammo = User.Instance.GetUesrAmmo(Player.Instance.curweapon.weaponInfo.ammoType);
+        ammo = User.Instance.GetUesrAmmo(Player.Instance.curweapon.weaponInfo.weaponType);
       
     }
 

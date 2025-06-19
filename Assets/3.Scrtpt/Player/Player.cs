@@ -123,7 +123,7 @@ public class Player : MonoBehaviour, IHittable
             {
                 for (int j = 0; j < 2; j++)
                 {
-                    if(weaponSlots[j] = null)
+                    if(weaponSlots[j] == null)
                     {
                         weaponSlots[j] = weapons[i];
                     }

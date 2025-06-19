@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // WeaponManager 클래스는 WeaponInfo를 상속받으며, 무기 관련 데이터를 관리하는 역할을 합니다.
-public class WeaponManager : WeaponInfo
+public class WeaponManager : MonoBehaviour
 {
     // 현재 선택된 무기 정보를 저장하는 변수
     public WeaponInfo Weaponinfo;
@@ -18,6 +18,8 @@ public class WeaponManager : WeaponInfo
     // 여러 무기 정보를 저장하는 배열 (Inspector에서 할당)
     public WeaponInfo[] weaponInfos;
 
+    public GradePoint[] ArGradePoints;
+    public GradePoint[] SmgGradePoints;
     // 게임 시작 시 호출되는 Start 메서드
     private void Start()
     {
@@ -42,4 +44,11 @@ public class WeaponManager : WeaponInfo
         // 일치하는 무기 정보가 없을 경우 null 반환
         return null;
     }
+}
+[System.Serializable]
+public class GradePoint
+{
+    public Grade grade;
+    public float min;
+    public float max;
 }

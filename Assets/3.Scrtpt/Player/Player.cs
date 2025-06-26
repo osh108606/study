@@ -15,7 +15,8 @@ public class Player : MonoBehaviour, IHittable
     public Rigidbody2D rb2d;
     public Weapon[] weapons;
     public Weapon curweapon;
-    
+
+
     //public WeaponSlotType weaponslot = WeaponSlotType.Main1;
     public Weapon[] weaponSlots = new Weapon[4];
     public WeaponStatusPanel weaponStatusPanel;
@@ -69,6 +70,8 @@ public class Player : MonoBehaviour, IHittable
             }
             ChangeSlot();
         }
+
+        
     }
 
     public void ChangeSlot()

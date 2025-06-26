@@ -101,7 +101,7 @@ public class Weapon : MonoBehaviour
     // 초기화, 무기가 시작될 때 호출
     public virtual void Start()
     {
-        
+        Reload();
     }
 
     // 매 프레임마다 업데이트
@@ -124,11 +124,11 @@ public class Weapon : MonoBehaviour
         bool isFirePressed = weaponInfo.automaticFire ? Input.GetMouseButton(0) : Input.GetMouseButtonDown(0);
 
 
-
+        //재장전
         if (isReloading)
         {
             reloadTimer -= Time.deltaTime;
-
+            
             if (reloadTimer <= 0f)
             {
                 
@@ -144,9 +144,14 @@ public class Weapon : MonoBehaviour
                 // 탄창 충전
                 ammoArray[currentSlotIndex] += reload;
                 // 인벤토리 탄약 차감
-                ammo.count -= reload;
+                if (User.Instance.userData.currentSlot != WeaponSlotType.Sub)
+                {
+                    ammo.count -= reload;
+                }
                 isReloading = false;
+               
             }
+
             
             return; // 장전 중엔 발사, 재장전, 입력 등 모두 차단
         }

@@ -1,8 +1,9 @@
 using UnityEngine;
 
+//무기 부착물 정보
 public class WeaponPart : MonoBehaviour
 {
-    public WeaponPartType weaponPartType;
+    public WeaponPartType weaponPartType; // 무기 부착물 타입
     public float damage;
     public float accuracy;
     public float stability;
@@ -10,7 +11,7 @@ public class WeaponPart : MonoBehaviour
 }
 
 
-public enum WeaponPartType
+public enum WeaponPartType//무기 부착물 타입
 {
     Muzzle,
     Magazine,

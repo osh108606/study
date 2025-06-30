@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public enum Enemystate
+public enum Enemystate //적 행동상태
 {
     Idle,
     Approching,
     Attack
 }
-//적 피격부위
-public enum BodyPart
+public enum BodyPart //적 피격부위
 {
     Head,
     Body,
     Leg
 }
+
 public class Enemy : MonoBehaviour
 {
 

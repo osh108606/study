@@ -3,10 +3,10 @@ using UnityEngine.UIElements;
 
 public class RangedEnemy : Enemy
 {
-    //공격 시작포인트
-    public Transform attackPointTr;
-    public EnemyBullet bulletPrefab;
+    public Transform attackPointTr;//공격 시작포인트
+    public EnemyBullet bulletPrefab;//사용할 총알
     public float time = 1f;
+
     public override void Attack()
     {
         Vector2 directtion = Player.Instance.Bodytr.transform.position - attackPointTr.transform.position;

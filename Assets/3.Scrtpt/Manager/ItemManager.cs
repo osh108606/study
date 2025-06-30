@@ -3,9 +3,7 @@ using Unity.VisualScripting;     // 유니티 비주얼 스크립팅 관련 기능 (비주얼 스�
 using UnityEngine;
 
 // 게임 내 아이템 데이터를 관리하는 아이템 매니저 클래스
-
-// 아이템의 종류를 나타내는 열거형
-public enum ItemType
+public enum ItemType // 아이템의 종류
 {
     equipment,  // 장비 아이템
     Consume,    // 소모성 아이템
@@ -13,16 +11,16 @@ public enum ItemType
     Ingredient  // 재료 아이템
 }
 
-// 아이템의 등급을 나타내는 열거형 (색상 또는 품질에 따라 구분)
-public enum Grade
+
+public enum Grade// 아이템 등급 (색상 또는 품질에 따라 구분)
 {
     Low,        // 낮은 등급 (회색)
     Common,     // 일반 등급 (초록)
     Uncommon,   // 약간 높은 등급 (파랑)
     Rare,       // 희귀 (보라)
     HighEnd,    // 고급 (노랑)
-    Named,      // 이름이 있는 특별한 등급 (진한 노랑)
-    Exotic,     // 이국적인 등급 (빨강)
+    Named,      // 네임드 고급 등급 (진한 노랑)
+    Exotic,     // 엑조틱 등급 (빨강)
     Set         // 세트 효과가 있는 등급 (진한 초록)
 }
 
@@ -117,15 +115,12 @@ public class ItemManager : MonoBehaviour
 [System.Serializable]
 public class ItemData
 {
-    // 아이템을 식별하기 위한 고유 키
-    public string key;
-    // 아이템의 이름
-    public string name;
-    // 아이템 썸네일 이미지 (UI에 표시하기 위한 Sprite)
-    public Sprite thum;
-    // 아이템의 종류 (장비, 소모품, 설계도, 재료 등)
-    public ItemType itemType;
+    public string key; // 아이템을 식별 고유 키
+    public string name; // 아이템의 이름
+    public Sprite thum; // 아이템 썸네일 이미지 (UI에 표시하기 위한 Sprite)
+    public ItemType itemType; // 아이템의 종류 (장비, 소모품, 설계도, 재료 등)
 }
+
 // 무기 아이템 데이터를 나타내는 클래스 (아이템 데이터 상속)
 // [System.Serializable] 어트리뷰트를 사용하여 Inspector에서 데이터를 확인하고 수정할 수 있습니다.
 [System.Serializable]

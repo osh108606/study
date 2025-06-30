@@ -6,17 +6,14 @@ using UnityEngine.UI; // UI 요소(예: Image)를 사용하기 위한 네임스페이스
 // 각 패널은 무기의 썸네일 이미지와 이름, 그리고 해당 장비 데이터를 표시합니다.
 public class WeaponItemPanel : MonoBehaviour
 {
-    // 무기 썸네일을 표시할 UI 이미지 컴포넌트
-    public Image thumImage;
-
-    // 무기 이름을 표시할 TextMeshPro 텍스트 컴포넌트
-    public TMP_Text nameText;
+    
+    public Image thumImage; // 무기 썸네일
+    public TMP_Text nameText;// 무기 이름
 
     // 해당 패널에 연결된 무기 장비 데이터를 저장하는 변수
     public Equipment equipment;
 
     
-
     // 무기 데이터를 패널에 설정하는 메서드
     public void SetWeapon(Equipment equipment)
     {
@@ -33,7 +30,7 @@ public class WeaponItemPanel : MonoBehaviour
         nameText.text = data.name;
     }
 
-    // 패널이 클릭되었을 때 호출되는 이벤트 메서드
+    // 패널이 클릭되었을 때 호출되는 이벤트
     public void OnClickedPanel()
     {
 

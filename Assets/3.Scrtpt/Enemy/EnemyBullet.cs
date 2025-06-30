@@ -6,10 +6,10 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
 
-    public float movespeed;
-    public EnemyInfo enemyInfo;
-    float t = 0;
-    Vector2 direction;
+    public float movespeed; //총알속도
+    public EnemyInfo enemyInfo; //적정보
+    float t = 0; //총알 수명
+    Vector2 direction; //총알 방향
 
 
     public void Shoot(Vector2 dir)

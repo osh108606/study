@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class ItemPanel : MonoBehaviour
 {
-    public TMP_Text m_Text;
-    public Image thumImage;
+    // 인벤토리에 나올 인벤토리의 무기표기ui에들어갈 코드
+    public TMP_Text m_Text;//이름
+    public Image thumImage;//썸네일
     public virtual void SetUserItem(UserItem userItem)
     {
         //for (int i = 0; i < ItemManager.Instance.itemDatas.Length; i++)

@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class WeaponStatusPanel : MonoBehaviour
 {
-    public TMP_Text currentMagzinText;
-    public TMP_Text ownMagzinText;
+    public TMP_Text currentMagzinText; // 현 탄창량
+    public TMP_Text ownMagzinText; // 소지 탄약량
 
     Ammo ammo;
     public void Equiped()
     {
         ammo = User.Instance.GetUesrAmmo(Player.Instance.curweapon.weaponInfo.weaponType);
-      
     }
 
     void Update()
     {
+        //플레이어가 없으면 비활성화
         if(Player.Instance == null)
         {
             currentMagzinText.gameObject.SetActive(false);

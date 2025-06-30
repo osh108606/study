@@ -5,21 +5,19 @@ using UnityEngine;
 //총알 타입(시스템기능)
 public enum AmmoitemType
 {
-    ConsumableAmmo,
-    WeaponAmmo
+    ConsumableAmmo,//소모성 특수탄약
+    WeaponAmmo//무기탄약
 }
 
 public class Bullet : MonoBehaviour
 {
-    public float movespeed;
+    public float movespeed; //총알속도
+    public AmmoitemType ammoitemType; //총알 시스템타입
+    public Weapon currentWeapon; //현재들고있는 장착한무기
+    
+    float t = 0; //총알 수명
 
-    public AmmoitemType ammoitemType;
-
-    public Weapon currentWeapon;
-
-    float t = 0;
-
-    Vector2 direction;
+    Vector2 direction; // 방향
     //총알 비활성화
         
     public void Shoot (Weapon weapon, Vector2 dir)

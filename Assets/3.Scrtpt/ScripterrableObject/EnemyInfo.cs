@@ -3,26 +3,25 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyInfo", menuName = "Scriptable Objects/EnemyInfo")]
 public class EnemyInfo : ScriptableObject
 {
-    public EnemyType enemyType;
-    public Enemyfaction enemyfaction;
-    public float Maxhp;
-    public float moveSpeed;
-    public float attackDamage;
-    public float attackRange;
-    public float stopDistance;
-    public float findrange;
-    public float attackdelay;
+    public EnemyType enemyType; // 적 타입
+    public Enemyfaction enemyfaction; // 적 진형
+    public float Maxhp; // 최대체력
+    public float moveSpeed; // 이동속도
+    public float attackDamage; // 공격력
+    public float attackRange; // 공격 범위
+    public float stopDistance; //정지범위
+    public float findrange; //추격범위
+    public float attackdelay; //공격딜레이
 }
 
-//적 공격 유형
-public enum EnemyType
+
+public enum EnemyType //적 타입
 {
     Melee,
     Ranged
 }
 
-//적 팩션 유형
-public enum Enemyfaction
+public enum Enemyfaction //적 진형
 {
 
     faction1,

@@ -7,15 +7,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IHittable
 {
-    public static Player Instance;
+    public static Player Instance; //싱글톤
     public Transform Headtr;
     public Transform Bodytr;
-    public float hp = 0;
-    public float moveSpeed;
     public Rigidbody2D rb2d;
     public Weapon[] weapons;
     public Weapon curweapon;
-
+    public float hp = 0;
+    public float moveSpeed;
 
     //public WeaponSlotType weaponslot = WeaponSlotType.Main1;
     public Weapon[] weaponSlots = new Weapon[4];
@@ -24,11 +23,8 @@ public class Player : MonoBehaviour, IHittable
 
     private void Awake()
     {
+        Instance = this;//싱글톤
         inputAction = new MainInputSystem();
-        
-
-        Instance = this;
-        Debug.Log("Awake");
         rb2d = GetComponent<Rigidbody2D>();
         weapons = GetComponentsInChildren<Weapon>(true);
     }
@@ -43,13 +39,12 @@ public class Player : MonoBehaviour, IHittable
     }
     private void Start()
     {
-        
         Equipt(User.Instance.GetSetUpWeapon(WeaponSlotType.Main1).key);
         WeaponChange();
-        Debug.Log("Start");
     }
     private void Update()
     {
+        //q와 e로 장착한 무기변경
         if (Input.GetKeyDown(KeyCode.E))
         {
 
@@ -70,8 +65,6 @@ public class Player : MonoBehaviour, IHittable
             }
             ChangeSlot();
         }
-
-        
     }
 
     public void ChangeSlot()
@@ -86,7 +79,7 @@ public class Player : MonoBehaviour, IHittable
         else
             curweapon = null;
     }
-    
+    // 데미지 받을시 사망(오브젝트 제거)
     public void TakeDamage(float damage)
     {
 
@@ -150,19 +143,13 @@ public class Player : MonoBehaviour, IHittable
 
 
     }
+    //이동 구현
     void Movement()
     { 
         Vector2 moveVec = inputAction.Ground.Move.ReadValue<Vector2>();
         rb2d.linearVelocity = moveVec.normalized *moveSpeed;
 
     }
-
-    //private void Update()
-    //{
-    //    //float attackvalue = inputAction.Ground.Attack.ReadValue<float>();
-        
-        
-    //}
 
     void FixedUpdate()
     {
@@ -175,7 +162,7 @@ public class Player : MonoBehaviour, IHittable
     }
     
 }
-public enum WeaponSlotType
+public enum WeaponSlotType // 무기 장착슬롯
 {
         Main1 = 0,
         Main2,

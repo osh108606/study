@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
-    //공격 시작포인트
+    //공격 지점
     public Transform attackPointTr;
 
     public override void Attack()

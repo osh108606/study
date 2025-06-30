@@ -11,13 +11,13 @@ public class Weapon : MonoBehaviour
     // 발사할 총알 프리팹 (미리 만들어진 총알 템플릿)
     public Bullet bulletPrefab;
     //무기 바리에이션 용 무기 능력치
-    public float accuracyMultiy=1;
-    public float stabilityMultiy=1;
-    public int exCilpammo=0;
+    public float accuracyMultiy=1; // 명중율
+    public float stabilityMultiy=1; //안정성배율
+    public int exCilpammo=0; //추가탄창증가량
     // 발사 간격 조절용 시간 변수
     public float time = 1f;
     
-    // 무기에 장착된 부품 배열
+    // 무기부착물배열
     public WeaponPart[] weaponParts;
 
     private bool isReloading = false;
@@ -76,18 +76,18 @@ public class Weapon : MonoBehaviour
         return stabilityMultiy * weaponInfo.stability - weaponPartStability;
     }
 
-    // 무기의 최종 안정성(반동)을 계산하는 함수
+    // 무기의 최종 탄창 크기을 계산하는 함수
     public float Getcilpammo()
     {
         float weaponPartCilpammo = 0;
-        // 각 부품들이 제공하는 안정성 보정치를 누적 (음수 값을 빼서 적용)
+        // 각 부품들이 제공하는 탄창추가량을 누적 (음수 값을 빼서 적용)
         for (int i = 0; i < weaponParts.Length; i++)
         {
             if (weaponParts[i] == null)
                 continue;
             weaponPartCilpammo -= weaponParts[i].cilpammo;
         }
-        // 기본 안정성에서 부품 보정치를 적용하여 최종 안정성 계산
+        // 기본 탄창에서 부품 보정치를 적용하여 최종 탄창량 계산
         return (exCilpammo + weaponInfo.cilpammo) - weaponPartCilpammo;
     }
     /* 
@@ -101,7 +101,7 @@ public class Weapon : MonoBehaviour
     // 초기화, 무기가 시작될 때 호출
     public virtual void Start()
     {
-        Reload();
+        
     }
 
     // 매 프레임마다 업데이트
@@ -122,8 +122,10 @@ public class Weapon : MonoBehaviour
 
         // 자동 비자동 조건
         bool isFirePressed = weaponInfo.automaticFire ? Input.GetMouseButton(0) : Input.GetMouseButtonDown(0);
+        
+        
 
-
+        
         //재장전
         if (isReloading)
         {
@@ -131,28 +133,26 @@ public class Weapon : MonoBehaviour
             
             if (reloadTimer <= 0f)
             {
-                
-                int current = ammoArray[currentSlotIndex];
-                
-                int max = weaponInfo.cilpammo;
-
-                int reload = max - current;
-
-                //체크x
-                Ammo ammo = User.Instance.GetUesrAmmo(weaponInfo.weaponType);
-
-                // 탄창 충전
-                ammoArray[currentSlotIndex] += reload;
                 // 인벤토리 탄약 차감
                 if (User.Instance.userData.currentSlot != WeaponSlotType.Sub)
                 {
+                    //현탄창량
+                    int current = ammoArray[currentSlotIndex];
+                    //탄창량
+                    int max = weaponInfo.cilpammo;
+                    //재장전할량
+                    int reload = max - current;
+
+                    // 탄창 충전 ex 25/30 + 5 = 30/30
+                    ammoArray[currentSlotIndex] += reload;
+
+                    //체크x
+                    Ammo ammo = User.Instance.GetUesrAmmo(weaponInfo.weaponType);
+
                     ammo.count -= reload;
                 }
                 isReloading = false;
-               
             }
-
-            
             return; // 장전 중엔 발사, 재장전, 입력 등 모두 차단
         }
 
@@ -166,24 +166,25 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-            
+        //공격버튼눌려질경우 발사
         if (isFirePressed)
         {
+            //조건
             if (weaponInfo.weaponType == WeaponType.SG)
             {
-                SGShoot();
+                SGShoot();// 산탄발사
             }
             else
             {
-                Shoot();
+                Shoot(); //일반발사
             }
 
             time = 0f;
-            ammoArray[currentSlotIndex]--;
+            ammoArray[currentSlotIndex]--;//탄창감소
         }
     }
 
-    // 일반 발사 메서드: 총알을 하나 발사합니다.
+    // 일반 발사: 총알을 하나 발사
     public virtual void Shoot()
     {
         // 마우스의 스크린 좌표를 가져옴
@@ -201,7 +202,7 @@ public class Weapon : MonoBehaviour
         bullet.Shoot(this, directtion.normalized);
     }
 
-    // 산탄총 발사 메서드: 한 번에 여러 개의 총알을 발사합니다.
+    // 산탄총 발사: 여러 개의 총알 발사
     public void SGShoot()
     {
         // 마우스의 스크린 좌표를 가져옴
@@ -255,7 +256,7 @@ public class Weapon : MonoBehaviour
         bullets.Add(bullet);
         return bullet;
     }
-
+    //산탄 총알 오브젝트 풀링 메서드: 비활성화된 총알을 반환하거나, 없으면 새로 생성
     public Bullet GetbulletInPoolShoot()
     {
         // 리스트에 있는 총알들을 순회하며
@@ -296,7 +297,7 @@ public class Weapon : MonoBehaviour
         
         Debug.Log("장전완료");
     }
-
+    // 무기 장착슬롯변경
     public void ChangeSlot(WeaponSlotType weaponSlot)
     {
         slotType = weaponSlot;

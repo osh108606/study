@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.LightTransport;
-public enum Difficulty
+public enum Difficulty //난이도 목록
 {
     VeryEasy,
     Easy,
@@ -16,24 +16,24 @@ public enum Difficulty
 }
 public class DifficultyManager : MonoBehaviour
 {
-    public Difficulty worlddifficulty;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Difficulty worlddifficulty; //전체 난이도
+    
     void Start()
     {
-        worlddifficulty = Difficulty.VeryEasy;
+        worlddifficulty = Difficulty.VeryEasy; //초기 난이도
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
+
     [System.Serializable]
     public class DifficultyData
     {
         public int MinLevel;  // 최소 레벨
         public int MaxLevel;  // 최대 레벨
-        public Difficulty worlddifficulty;
+        public Difficulty worldDifficulty;
         public float XPModifier;  // 경험치 배수
     }
 

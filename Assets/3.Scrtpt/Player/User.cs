@@ -14,10 +14,8 @@ public class User : MonoBehaviour
     // 현재 선택된 장비 데이터를 저장하는 변수
     public Equipment equipment;
 
-   
     // bulletItem 객체 (총알 아이템 관련, bulletItem 클래스는 별도로 정의되어 있어야 함)
     public bulletItem bulletItem;
-
 
     // 디버그 또는 테스트용으로 입력받는 아이템 이름
     public string itemName;
@@ -35,38 +33,41 @@ public class User : MonoBehaviour
         // 저장된 유저 데이터가 없으면 초기 유저 데이터를 생성합니다.
         if (userData == null)
         {
-            userData = new UserData();
-            userData.nickname = "player";
+            userData = new UserData(); //유저데이터 생성
+            userData.nickname = "player"; //유저데이터 이름 초기화
+            
+            //메인1,메인2,보조 무기 생성및 장착
+            {
 
+                Equipment main1 = new Equipment(); //생성
+                main1.key = "AR Base"; //키값초기화
+                main1.setUpType = WeaponSlotType.Main1; //슬롯할당
+                userData.weapons.Add(main1); // 유저데이터에 추가
+                SetUp(WeaponSlotType.Main1, main1); // 슬롯에 장착
 
-            Equipment main1 = new Equipment();
-            main1.key = "AR Base";
-            main1.setUpType = WeaponSlotType.Main1;
-            userData.weapons.Add(main1);
-            SetUp(WeaponSlotType.Main1, main1);
+                Equipment main2 = new Equipment();
+                main2.key = "SMG Base";
+                main2.setUpType = WeaponSlotType.Main2;
+                userData.weapons.Add(main2);
+                SetUp(WeaponSlotType.Main2, main2);
 
-            Equipment main2 = new Equipment();
-            main2.key = "SMG Base";
-            main2.setUpType = WeaponSlotType.Main2;
-            userData.weapons.Add(main2);
-            SetUp(WeaponSlotType.Main2, main2);
-
-            Equipment sub = new Equipment();
-            sub.key = "HG Base";
-            sub.setUpType = WeaponSlotType.Sub;
-            userData.weapons.Add(sub);
-            SetUp(WeaponSlotType.Sub, sub);
-
-            AddAmmo(WeaponType.AR, 100);
-            AddAmmo(WeaponType.SMG, 100);
-            AddAmmo(WeaponType.HG, 100);
+                Equipment sub = new Equipment();
+                sub.key = "HG Base";
+                sub.setUpType = WeaponSlotType.Sub;
+                userData.weapons.Add(sub);
+                SetUp(WeaponSlotType.Sub, sub);
+                
+                //무기총알 추가
+                AddAmmo(WeaponType.AR, 100);
+                AddAmmo(WeaponType.SMG, 100);
+                AddAmmo(WeaponType.HG, 100);
+            }
 
             // 생성된 초기 데이터를 저장
             SaveManager.SaveData("UserData", userData);
         }
     }
 
-    //게임 시작 시 호출되며, 저장된 유저 데이터를 불러오거나 초기화
     private void Start()
     {
         
@@ -100,7 +101,7 @@ public class User : MonoBehaviour
         }
     }
 
-    // 유저가 장착한 무기 중 setup 값이 true인 무기를 찾아 반환합니다.
+    // 유저가 소지한 무기들중 setUpType 값을 무기슬롯타입과 비교한뒤 반환
     public Equipment GetSetUpWeapon(WeaponSlotType type)
     {   
 
@@ -123,7 +124,11 @@ public class User : MonoBehaviour
         if (setUpE != null)
         {
             setUpE.setUpType = WeaponSlotType.None;
+
+            //weapon의 ammo.count += current
+            
         }
+        //Reload();
         equipment.setUpType = setUpType;
         
     }
@@ -163,6 +168,7 @@ public class User : MonoBehaviour
         return userItem;
     }
 
+    //총알 추가(총알타입,개수)
     public void AddAmmo(WeaponType ammoType, int count)
     {
         // key에 해당하는 아이템을 가져오거나, 없으면 새로 생성합니다.
@@ -201,13 +207,13 @@ public class User : MonoBehaviour
 [System.Serializable]
 public class UserData
 {
-    
+    //이름
     public string nickname;
-  
-    public int gold;
-
+    //돈
+    public int money;
+    //무기장착슬롯
     public int[] currentAmmoSlot = new int[4];
-
+    //초기 기본슬롯(현재슬롯)
     public WeaponSlotType currentSlot = WeaponSlotType.Main1;
 
     // 유저가 소유한 아이템 리스트
@@ -229,11 +235,13 @@ public class UserItem
     // 보유한 아이템의 개수
     public int count;
 }
+//총알정보
 [System.Serializable]
 public class Ammo
 {
+    //총알종류
     public WeaponType ammoType;
-
+    //개수
     public int count;
 }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 // Weapon 클래스는 MonoBehaviour를 상속받아 Unity의 게임 오브젝트로 동작합니다.
 public class Weapon : MonoBehaviour
 {
-
+    public string key;
     // 무기 기본 정보를 담은 변수
     public WeaponInfo weaponInfo;
     // 발사할 총알 프리팹 (미리 만들어진 총알 템플릿)
@@ -98,10 +98,10 @@ public class Weapon : MonoBehaviour
        MG  : 낮은 시작 명중률, 시작 반동, 발사 시 명중률과 반동이 증가
     */
 
-    // 초기화, 무기가 시작될 때 호출
+    public UserWeapon userWeapon;
     public virtual void Start()
     {
-        
+        userWeapon = User.Instance.GetSetUpWeapon(slotType);
     }
 
     // 매 프레임마다 업데이트
@@ -115,8 +115,9 @@ public class Weapon : MonoBehaviour
         time += Time.deltaTime;
 
         int currentSlotIndex = (int)User.Instance.userData.currentSlot;
-        int[] ammoArray = User.Instance.userData.currentAmmoSlot;
-        
+        int[] ammoArray = new int[] { User.Instance.currentUserWeapon.currentAmmoCount };
+        //User.Instance.userData.currentAmmoCount;
+
         // 발사 가능 조건
         bool canFire = time >= fireRate && ammoArray[currentSlotIndex] > 0;
 

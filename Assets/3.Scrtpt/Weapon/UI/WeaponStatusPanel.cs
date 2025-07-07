@@ -26,10 +26,10 @@ public class WeaponStatusPanel : MonoBehaviour
         ownMagzinText.gameObject.SetActive(true);
 
         int slotIndex = (int)User.Instance.userData.currentSlot;
-        currentMagzinText.text = User.Instance.userData.currentAmmoSlot[slotIndex].ToString();
+        currentMagzinText.text = User.Instance.currentUserWeapon.currentAmmoCount.ToString();
+        //User.Instance.userData.currentAmmoSlot[slotIndex].ToString();
 
-        
-        if(User.Instance.userData.currentSlot != WeaponSlotType.Sub)
+        if (User.Instance.userData.currentSlot != WeaponSlotType.Sub)
         {
             ownMagzinText.text = ammo.count.ToString();
         }

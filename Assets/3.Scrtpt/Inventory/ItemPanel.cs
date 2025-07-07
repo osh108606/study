@@ -27,7 +27,7 @@ public class ItemPanel : MonoBehaviour
         //    }
         //}
     }
-    public void SetUserItem(Equipment equipment)
+    public void SetUserItem(UserWeapon userWeapon)
     {
         //for (int i = 0; i < ItemManager.Instance.itemDatas.Length; i++)
         //{

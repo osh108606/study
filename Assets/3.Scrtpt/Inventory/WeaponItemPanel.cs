@@ -11,17 +11,17 @@ public class WeaponItemPanel : MonoBehaviour
     public TMP_Text nameText;// 무기 이름
 
     // 해당 패널에 연결된 무기 장비 데이터를 저장하는 변수
-    public Equipment equipment;
+    public UserWeapon userWeapon;
 
     
     // 무기 데이터를 패널에 설정하는 메서드
-    public void SetWeapon(Equipment equipment)
+    public void SetWeapon(UserWeapon userWeapon)
     {
         // 입력받은 장비 데이터를 클래스 내부 변수에 저장
-        this.equipment = equipment;
+        this.userWeapon = userWeapon;
 
         // ItemManager의 싱글톤 인스턴스를 사용하여, 해당 장비 키를 통해 무기 아이템 데이터를 가져옴
-        WeaponItemData data = ItemManager.Instance.GetWeaponItemData(equipment.key);
+        WeaponItemData data = ItemManager.Instance.GetWeaponItemData(userWeapon.key);
 
         // 가져온 데이터의 썸네일 이미지를 패널의 이미지 컴포넌트에 할당
         thumImage.sprite = data.thum;
@@ -34,7 +34,7 @@ public class WeaponItemPanel : MonoBehaviour
     public void OnClickedPanel()
     {
 
-        User.Instance.SetUp(GetComponentInParent<WeaponInventoryCanvase>().weaponSetUpType,equipment);
+        User.Instance.SetUp(GetComponentInParent<WeaponInventoryCanvase>().weaponSetUpType, userWeapon);
         //GetComponentInParent<WeaponInventoryCanvase>().weaponSetUpType
         //equipment
         // 부모 오브젝트 중 WeaponInventoryCanvase 컴포넌트를 찾아,

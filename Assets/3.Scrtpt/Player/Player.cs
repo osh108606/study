@@ -39,6 +39,9 @@ public class Player : MonoBehaviour, IHittable
     }
     private void Start()
     {
+        //Equipt()는 WeaponInfo의 key값을 비교
+        //UserWeapon GetSetUpWeapon() 안에 WeaponSlotType type를 넣고
+        //그것의 key값( UserWeapon의것 )
         Equipt(User.Instance.GetSetUpWeapon(WeaponSlotType.Main1).key);
         WeaponChange();
     }
@@ -69,13 +72,13 @@ public class Player : MonoBehaviour, IHittable
 
     public void ChangeSlot()
     {
-        Equipment equipment = User.Instance.GetSetUpWeapon(User.Instance.userData.currentSlot);
+        UserWeapon userWeapon = User.Instance.GetSetUpWeapon(User.Instance.userData.currentSlot);
 
-        User.Instance.ChangeWeaponSlot(equipment.setUpType);
+        User.Instance.ChangeWeaponSlot(userWeapon.setUpType);
 
 
-        if (equipment != null)
-            Equipt(equipment.key);
+        if (userWeapon != null)
+            Equipt(userWeapon.key);
         else
             curweapon = null;
     }
